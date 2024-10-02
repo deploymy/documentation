@@ -1,5 +1,6 @@
 {
   "version": "0.0.0-development",
+  "name": "deploy-my-documentation",
   "private": true,
   "scripts": {
     "docs:dev": "vitepress dev",
