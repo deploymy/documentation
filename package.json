@@ -1,0 +1,17 @@
+{
+  "version": "0.0.0-development",
+  "private": true,
+  "scripts": {
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview",
+    "lint:md": "markdownlint '**/*.md' --ignore node_modules",
+    "semantic-release": "semantic-release"
+  },
+  "devDependencies": {
+    "@semantic-release/github": "^11.0.0",
+    "markdownlint-cli": "^0.42.0",
+    "vitepress": "^1.3.4",
+    "vue": "^3.5.10"
+  }
+}
