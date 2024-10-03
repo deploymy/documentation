@@ -5,12 +5,13 @@ The structure of the project does not deviate from the common model of how an np
 If the structure is not self-explanatory for you, feel free to create a PR with an improvement.
 
 Essentially:
+
 - `test/` for test,
 - `src/` for source files.
 
 New parser should be created in subdir `src/parsers/`, as in the example of `aws-cloudformation.ts`.
 
-```
+```text
 docker-to-iac/
 |-- .github
 |-- dist/
