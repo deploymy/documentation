@@ -1,4 +1,4 @@
-name: Release to CloudFlare
+name: Release to CloudFlare Preview
 
 on:
   push:
