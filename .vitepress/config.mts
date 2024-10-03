@@ -11,6 +11,9 @@ export default defineConfig({
     ['link', { rel: "icon", type: "image/png", sizes: "16x16", href: "/img/favicon-16-16.png"}],    
     ['link', { rel: "shortcut icon", href: "/img/favicon.png"}]
   ],  
+  sitemap: {
+    hostname: 'https://docs.deploy.my'
+  },  
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
 		logo: {
