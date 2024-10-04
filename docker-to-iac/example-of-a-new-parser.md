@@ -90,3 +90,7 @@ The test can be executed using `npm run test`
 You can build the module locally by running the `npm run build` command.
 
 The built output files are located under `dist/`
+
+## Update the docs
+
+If you have made an improvement in code, please remember for the users of these modules to update our documentation. The rule for docs can be found in [deploymy/documentation README.md file](https://github.com/deploymy/documentation/blob/main/README.md).
