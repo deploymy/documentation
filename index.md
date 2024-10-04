@@ -4,22 +4,28 @@ layout: home
 
 hero:
   name: "Deploy.my Docs"
-  text: "Deploy.my Full Documentation and API"
-  tagline: My great project tagline
+  text: "Deploy Anywhere"
+  tagline: "Convert docker-compose into IaC and One-Deploy Template"
+  image:
+    src: /img/deploymy-logo-transparent-760x825.webp
+    alt: Deploy.my Documentation  
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
-    - theme: alt
-      text: API Examples
-      link: /api-examples
+      text: Docker-to-IaC Docs
+      link: /docker-to-iac
+    # - theme: alt
+    #   text: API Examples
+    #   link: /api-examples
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: "Hassle-free Deployment"
+    details: "Your open source project can be deployed on (almost) any cloud platform"
+    icon: 🏖️
+  - title: "Quickstart for your App"
+    details: "Deploy your app from GitHub with just one click"
+    icon: 🚀
+  - title: "Open Source"
+    details: "All IaC artifacts and our module are open source."
+    icon: 📖
 ---
 
