@@ -28,21 +28,36 @@ export default defineConfig({
       {
         items: [ 
           {
-            text: 'Usage',
+            text: 'Introduction',
+            link: '/docker-to-iac'
+          },
+          {
+            text: 'Usage & Concept',
             base: '/docker-to-iac/',
             items: [
               { text: 'Quickstart', link: 'quickstart' },
               { text: 'API', link: 'api' },
-              { text: 'Supported Languages', link: 'supported-languages' }
+              { text: 'Parser Explanation', link: 'parser-explanation' },
+              { text: 'Multi Services Support', link: 'multi-services-support' }
+            ]
+          },
+          {
+            text: 'Parsers',
+            base: '/docker-to-iac/',
+            link: 'parser',
+            items: [
+              { text: 'AWS CloudFormation', link: 'parser/aws-cloudformation' }
             ]
           },
           {
             text: 'Development',
             base: '/docker-to-iac/',
             items: [
+              { text: 'Available Commands', link: 'available-commands' },
               { text: 'Project Structure', link: 'project-structure' },
               { text: 'Testing', link: 'testing' },
-              { text: 'Example of a New Parser', link: 'example-of-a-new-parser' }
+              { text: 'Example of a New Parser', link: 'example-of-a-new-parser' },
+              { text: 'Publishing to npm', link: 'publishing-to-npm' }
             ]
           }
         ]
