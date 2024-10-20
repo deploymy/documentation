@@ -1,3 +1,7 @@
+---
+description: Translate docker docker-compose.yml file into AWS Cloud Formation with deploy.my
+---
+
 # Parser - AWS CloudFormation
 
 The parser for CloudFormation translates the `docker-compose.yml` file into CloudFormation. The parser logic can be found in GitHub inside [docker-to-iac repo](https://github.com/deploymy/docker-to-iac/blob/main/src/parsers/aws-cloudformation.ts).
