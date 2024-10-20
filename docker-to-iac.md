@@ -2,7 +2,7 @@
 description: Introduction to the node module docker-to-iac which allows you to transfer docker-compose into IaC templates
 ---
 
-# Docker to IaC
+# Docker to Infrastructure as Code Module
 
 Docker to IaC is a Node.js module that translates the `docker-compose.yml` file into various types of Infrastructure as Code (IaC) templates. The goal of the module is to make GitHub repositories with docker-compose more easily accessible to various cloud providers such as Amazon Web Services (AWS), Google Cloud, DigitalOcean, and so on.
 

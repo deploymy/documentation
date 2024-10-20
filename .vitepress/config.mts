@@ -4,13 +4,17 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   transformPageData(pageData) {
 
+    const canonicalUrl = `https://docs.deploy.my/${pageData.relativePath}`
+      .replace(/index\.md$/, '')
+      .replace(/\.md$/, '');
+
     pageData.frontmatter.head ??= []
 
     pageData.frontmatter.head.push([
       'meta',
       {
         name: 'og:title',
-        content: `${pageData.title} | Deploy.my Docs`
+        content: `${pageData.title}`
       }
     ]);
 
@@ -20,11 +24,23 @@ export default defineConfig({
         name: 'og:description',
         content: pageData.description
       }
-    ]);    
-
-    const canonicalUrl = `https://docs.deploy.my/${pageData.relativePath}`
-      .replace(/index\.md$/, '')
-      .replace(/\.md$/, '');
+    ]);
+    
+    pageData.frontmatter.head.push([
+      'meta',
+      {
+        name: 'og:url',
+        content: canonicalUrl
+      }
+    ]);
+    
+    pageData.frontmatter.head.push([
+      'meta',
+      {
+        name: 'og:type',
+        content: 'article'
+      }
+    ]);
 
     pageData.frontmatter.head.push([
       'link',
@@ -35,6 +51,7 @@ export default defineConfig({
   },  
   lang: 'en-US',
   title: "Deploy.my Docs",
+  titleTemplate: false,
   cleanUrls: true,
   description: "Deploy.my Full Documentation and API",
   head: [
@@ -46,11 +63,13 @@ export default defineConfig({
   sitemap: {
     hostname: 'https://docs.deploy.my'
   },  
+  srcExclude: ['**/README.md'],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
 		logo: {
 			light: '/img/deploymy-logo-transparent-22x24.webp',
-			dark: '/img/deploymy-logo-transparent-22x24.webp'
+			dark: '/img/deploymy-logo-transparent-22x24.webp',
+      alt: 'Deploy.my Logo'
 		}, 
     nav: [
       { text: 'Docker-To-IaC', link: '/docker-to-iac' },
