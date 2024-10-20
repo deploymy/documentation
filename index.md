@@ -1,6 +1,7 @@
 ---
 # https://vitepress.dev/reference/default-theme-home-page
 layout: home
+description: Documentation of the platform and the entire Deploy.My ecosystem. Read about our IaC templates and open source node modules, quickstart and usage.
 
 hero:
   name: "Deploy.my Docs"

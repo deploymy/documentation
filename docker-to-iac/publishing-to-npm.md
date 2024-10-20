@@ -1,4 +1,8 @@
-# Publishing to NPM
+---
+description: Here you will learn how our CI/CD publish mechanism to npm works for docker-to-iac module.
+---
+
+# Publishing docker-to-iac module to NPM
 
 We have created an organization @deploymy for NPM. Publishing in NPM happens automatically through `semantic-release`. Config: [https://github.com/deploymy/docker-to-iac/blob/main/.github/workflows/release.yml](https://github.com/deploymy/docker-to-iac/blob/main/.github/workflows/release.yml)
 
