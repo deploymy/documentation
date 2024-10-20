@@ -2,7 +2,7 @@
 description: Before you start contributing to deploy.my and docker-to-iac, make sure you read this article.
 ---
 
-# Before you start contributing
+# Before you start contributing to docker-to-iac module
 
 Thank you for your interest in extending the module. Please remember that [docker-to-iac](https://github.com/deploymy/docker-to-iac) open-source module is the heart of the Deploy.My platform.
 
