@@ -1,4 +1,8 @@
-# Project Structure
+---
+description: Directory structure, how the docker-to-iac module is structured, explanation of where you should add which type of files.
+---
+
+# Project Structure of docker-to-iac module
 
 The structure of the project does not deviate from the common model of how an npm module should be written.
 
@@ -19,6 +23,7 @@ docker-to-iac/
 |   |-- index.ts
 |   |-- parsers/
 |       |-- aws-cloudformation.ts
+|       |-- render.ts
 |       |-- base-parser.ts
 |-- test/
 |   |-- sample-docker-compose.yml

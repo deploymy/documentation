@@ -1,4 +1,8 @@
-# Available Commands
+---
+description: List of all available commands that you can use to help us with development and testing
+---
+
+# docker-to-iac Available Commands
 
 The following commands are currently supported:
 

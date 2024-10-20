@@ -1,4 +1,8 @@
-# Parser Explanation
+---
+description: Explanation of the term parser. What we mean by a parser in the context of docker-to-iac module.
+---
+
+# Term Parser Explanation in context of docker-to-iac
 
 A parser always represents a selected IaC (Infrastructure as Code) or One-Click Deploy template. A parser therefore translates the `docker-compose.yml` file into the target IaC template.
 

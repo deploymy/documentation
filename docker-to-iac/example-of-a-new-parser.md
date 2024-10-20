@@ -1,3 +1,7 @@
+---
+description: Example code how a new parser must be added to the module so that it can be published
+---
+
 # Example of a new Parser
 
 > [!TIP]  
