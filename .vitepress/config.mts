@@ -1,4 +1,4 @@
-import { defineConfig, HeadConfig } from 'vitepress'
+import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -24,7 +24,7 @@ export default defineConfig({
 
     const canonicalUrl = `https://docs.deploy.my/${pageData.relativePath}`
       .replace(/index\.md$/, '')
-      .replace(/\.md$/, '.html');
+      .replace(/\.md$/, '');
 
     pageData.frontmatter.head.push([
       'link',
@@ -34,7 +34,7 @@ export default defineConfig({
     // return head
   },  
   lang: 'en-US',
-  title: "Deploy.my / Docs",
+  title: "Deploy.my Docs",
   cleanUrls: true,
   description: "Deploy.my Full Documentation and API",
   head: [
