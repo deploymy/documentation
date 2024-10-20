@@ -38,7 +38,7 @@ export default defineConfig({
   cleanUrls: true,
   description: "Deploy.my Full Documentation and API",
   head: [
-    ['meta', { name: "google-site-verification", href: "ENkXzWyVdWGJDVd9blSXN63XOCMqAv7w8QaqyvikKvo"}],
+    ['meta', { name: "google-site-verification", content: "ENkXzWyVdWGJDVd9blSXN63XOCMqAv7w8QaqyvikKvo"}],
     ['link', { rel: "icon", type: "image/png", sizes: "32x32", href: "/img/favicon-32-32.png"}],
     ['link', { rel: "icon", type: "image/png", sizes: "16x16", href: "/img/favicon-16-16.png"}],    
     ['link', { rel: "shortcut icon", href: "/img/favicon.png"}]
