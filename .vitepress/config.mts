@@ -1,7 +1,38 @@
-import { defineConfig } from 'vitepress'
+import { defineConfig, HeadConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  transformPageData(pageData) {
+
+    pageData.frontmatter.head ??= []
+
+    pageData.frontmatter.head.push([
+      'meta',
+      {
+        name: 'og:title',
+        content: `${pageData.title} | Deploy.my Docs`
+      }
+    ]);
+
+    pageData.frontmatter.head.push([
+      'meta',
+      {
+        name: 'og:description',
+        content: pageData.description
+      }
+    ]);    
+
+    const canonicalUrl = `https://docs.deploy.my/${pageData.relativePath}`
+      .replace(/index\.md$/, '')
+      .replace(/\.md$/, '.html');
+
+    pageData.frontmatter.head.push([
+      'link',
+      { rel: 'canonical', href: canonicalUrl }
+    ]);
+    
+    // return head
+  },  
   lang: 'en-US',
   title: "Deploy.my / Docs",
   cleanUrls: true,
@@ -46,13 +77,15 @@ export default defineConfig({
             base: '/docker-to-iac/',
             link: 'parser',
             items: [
-              { text: 'AWS CloudFormation', link: 'parser/aws-cloudformation' }
+              { text: 'AWS CloudFormation', link: 'parser/aws-cloudformation' },
+              { text: 'Render.com', link: 'parser/render.com' }
             ]
           },
           {
             text: 'Development',
             base: '/docker-to-iac/',
             items: [
+              { text: 'Before you Start', link: 'before-you-start' },
               { text: 'Available Commands', link: 'available-commands' },
               { text: 'Project Structure', link: 'project-structure' },
               { text: 'Testing', link: 'testing' },
