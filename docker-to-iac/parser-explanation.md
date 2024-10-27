@@ -18,6 +18,18 @@ Example: for AWS you can allocate a minimum of 256 CPU for a docker container in
 
 You can read how to get default parser values ​​through API [here](/docker-to-iac/api.md#get-parser-info).
 
+## Parser vs. Lanauge
+
+The [type `ParserInfo`](https://github.com/deploymy/docker-to-iac/blob/main/src/parsers/base-parser.ts) includes the splitting of vars between a `Provider` and `Language`. This is necessary because some providers allow multiple languages.
+
+AWS can be mentioned as an example here. In AWS, infrastructure can be created with:
+
+- CloudFormation
+- AWS CDK (i.e. for TypeScript)
+- Terraform
+
+Therefore, when we add a new parser, check if multiple IaC languages ​​are possible. Keep this in mind when naming the new parser in directory `src/parsers/<IAC_LANGUAGE_FILE_NAME>.ts`. This is also the reason why the [`translate()`](/docker-to-iac/api.md#translate-api) method asks for the target IaC language name (i.e. `CFN`) and not for the provider name (i.e. `AWS`).
+
 ## Examples
 
 For example, a parser can translate `docker-compose.yml` into AWS CloudFormation.

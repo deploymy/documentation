@@ -8,7 +8,11 @@ In this page you will find all possible APIs for package docker-to-iac.
 
 ## List all Parser
 
-```javascript
+To list all available parsers, please use the `listAllParsers()` method.
+
+### Example
+
+```typescript
 import { listAllParsers } from '@deploymy/docker-to-iac';
 
 const parsers = listAllParsers();
@@ -17,25 +21,49 @@ console.log('Available Parsers:');
 console.log(parsers);
 ```
 
-Example output:
+#### Output
 
 ```json
 [
   {
-    website: 'https://aws.amazon.com/cloudformation/',
-    officialDocs: 'https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html',
-    abbreviation: 'CFN',
-    name: 'AWS CloudFormation',
+    providerWebsite: 'https://aws.amazon.com/cloudformation/',
+    providerName: 'Amazon Web Services',
+    provieerNameAbbreviation: 'AWS',
+    languageOfficialDocs: 'https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html',
+    languageAbbreviation: 'CFN',
+    languageName: 'AWS CloudFormation',
     defaultParserConfig: { cpu: 512, memory: '1GB', templateFormat: 'yaml' }
+  },
+  {
+    providerWebsite: 'https://render.com/docs',
+    providerName: 'Render',
+    provieerNameAbbreviation: 'RND',
+    languageOfficialDocs: 'https://docs.render.com/infrastructure-as-code',
+    languageAbbreviation: 'RND',
+    languageName: 'Render Blue Print',
+    defaultParserConfig: {
+      subscriptionName: 'free',
+      region: 'oregon',
+      fileName: 'render.yaml',
+      templateFormat: 'yaml'
+    }
   }
 ]
+```
+
+### Type
+
+```typescript
+listAllParsers(): ParserInfo[]
 ```
 
 ## Get Parser Info
 
 If you want to extract the `defaultParserConfig` object from a parser, the `getParserInfo` method is the most suitable for this.
 
-```javascript
+### Example
+
+```typescript
 import { getParserInfo } from '@deploymy/docker-to-iac';
 
 const awsInfo = getParserInfo('CFN');
@@ -44,55 +72,34 @@ console.log('Available Parsers:');
 console.log(awsInfo);
 ```
 
-Example output:
+#### Output
 
 ```json
 {
-  website: 'https://aws.amazon.com/cloudformation/',
-  officialDocs: 'https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html',
-  abbreviation: 'CFN',
-  name: 'AWS CloudFormation',
-  defaultParserConfig: { cpu: 512, memory: '1GB', templateFormat: 'yaml' }
+    providerWebsite: 'https://aws.amazon.com/cloudformation/',
+    providerName: 'Amazon Web Services',
+    provieerNameAbbreviation: 'AWS',
+    languageOfficialDocs: 'https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html',
+    languageAbbreviation: 'CFN',
+    languageName: 'AWS CloudFormation',
+    defaultParserConfig: { cpu: 512, memory: '1GB', templateFormat: 'yaml' }
 }
+```
+
+### Type
+
+```typescript
+getParserInfo(languageAbbreviation: string): ParserInfo
 ```
 
 ## Translate API
 
-### Available variables
-
-```javascript
-translate(DOCKER_COMPOSE_CONTENT, SUPPORTED_PLATFORMS, TEMPLATE_FORMAT)
-```
-
-#### `DOCKER_COMPOSE_CONTENT`
-
-The docker compose content you want to translate.
-
-#### `SUPPORTED_PLATFORMS`
-
-List of supported plattforms / IaC Templates.
-
-Currently we support:
-
-Please see the sitebar on the left, section Parsers.
-
-#### `TEMPLATE_FORMAT` (Optional)
-
-The response format, you want to get.
-
-Currently we support:
-
-- `json` - JavaScript Object Notation
-- `yaml` - yet another markup language
-- `text` - for plain text
-
-> [!IMPORTANT]  
-> For some IaC languages ​​it doesn't make sense to output them in text, JSON or YAML. For example: CloudFormation only accepts YAML or JSON. So be careful what you choose.
+Translate the `docker-compose.yml` file into target language you select.
 
 ### Example
 
 ```javascript
-mport { readFileSync, writeFileSync } from 'fs';
+import { readFileSync, writeFileSync } from 'fs';
 import { translate } from '@deploymy/docker-to-iac';
 
 const dockerComposeContent = readFileSync('path/to/docker-compose.yml', 'utf8');
@@ -101,7 +108,7 @@ const translatedConfig = translate(dockerComposeContent, 'CFN');
 console.log(translatedConfig);
 ```
 
-Example output:
+#### Output
 
 ```yaml
 AWS CloudFormation yaml:
@@ -136,3 +143,34 @@ Resources:
         - arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy
 ...
 ```
+
+### Type
+
+```typescript
+translate(dockerComposeContent: string, languageAbbreviation: string, templateFormat?: TemplateFormat): any
+```
+
+#### `dockerComposeContent`
+
+The docker compose content you want to translate.
+
+#### `languageAbbreviation`
+
+List of supported IaC languages.
+
+Currently we support:
+
+Please see the sitebar on the left, section Parsers.
+
+#### `templateFormat` (Optional)
+
+The response format, you want to get.
+
+Currently we support:
+
+- `json` - JavaScript Object Notation
+- `yaml` - yet another markup language
+- `text` - for plain text
+
+> [!IMPORTANT]  
+> For some IaC languages ​​it doesn't make sense to output them in text, JSON or YAML. For example: CloudFormation only accepts YAML or JSON. So be careful what you choose.

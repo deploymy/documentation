@@ -6,6 +6,10 @@ description: Translate docker docker-compose.yml file into AWS Cloud Formation w
 
 The parser for CloudFormation translates the `docker-compose.yml` file into CloudFormation. The parser logic can be found in GitHub inside [docker-to-iac repo](https://github.com/deploymy/docker-to-iac/blob/main/src/parsers/aws-cloudformation.ts).
 
+## Parser language abbreviation for API
+
+- `languageAbbreviation`: `CFN`.
+
 ## Prerequisite to deploy CloudFormation Template
 
 To deploy the CloudFormation template in your AWS account, you need a VPC with internet access. It should also be possible to create ENI ([AWS Elastic Network Interface](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html)) with public IP. The template uses __AWS Fargate__ without an Application Load Balancer to save costs.
@@ -23,10 +27,6 @@ The tasks within ECS services create an ENI that has a public IP address. Since 
 When creating CloudFormation template, we decided not to use ALB to save costs. You can of course modify the CloudFormation template and add your ALB if needed.
 
 There is also a Container Security Group linked to ECS Service, only the ports required for TCP/IP communication are open.
-
-## Parser abbreviation for API
-
-- Abbreviation: `CFN`.
 
 ## Default output format
 
