@@ -4,7 +4,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   transformPageData(pageData) {
 
-    const canonicalUrl = `https://docs.deploy.my/${pageData.relativePath}`
+    const canonicalUrl = `https://docs.deploystack.io/${pageData.relativePath}`
       .replace(/index\.md$/, '')
       .replace(/\.md$/, '');
 
@@ -50,10 +50,10 @@ export default defineConfig({
     // return head
   },  
   lang: 'en-US',
-  title: "Deploy.my Docs",
+  title: "DeployStack Docs",
   titleTemplate: false,
   cleanUrls: true,
-  description: "Deploy.my Full Documentation and API",
+  description: "DeployStack Full Documentation and API",
   head: [
     ['meta', { name: "google-site-verification", content: "ENkXzWyVdWGJDVd9blSXN63XOCMqAv7w8QaqyvikKvo"}],
     ['link', { rel: "icon", type: "image/png", sizes: "32x32", href: "/img/favicon-32-32.png"}],
@@ -61,19 +61,19 @@ export default defineConfig({
     ['link', { rel: "shortcut icon", href: "/img/favicon.png"}]
   ],  
   sitemap: {
-    hostname: 'https://docs.deploy.my'
+    hostname: 'https://docs.deploystack.io'
   },  
   srcExclude: ['**/README.md'],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
 		logo: {
-			light: '/img/deploymy-logo-transparent-22x24.webp',
-			dark: '/img/deploymy-logo-transparent-22x24.webp',
-      alt: 'Deploy.my Logo'
+			light: '/img/deploystack-logo-transparent-22x24.webp',
+			dark: '/img/deploystack-logo-transparent-22x24.webp',
+      alt: 'DeployStack Logo'
 		}, 
     nav: [
       { text: 'Docker-To-IaC', link: '/docker-to-iac' },
-      { text: 'Deploy.My', link: 'https://deploy.my' }
+      { text: 'DeployStack', link: 'https://deploystack.io' }
     ],
     sidebar: [
       {
@@ -118,22 +118,22 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'twitter', link: 'https://x.com/deploymy' },
-      { icon: 'github', link: 'https://github.com/deploymy' }
+      { icon: 'twitter', link: 'https://x.com/deploystack' },
+      { icon: 'github', link: 'https://github.com/deploystackio' }
     ],
 		search: {
 			provider: 'local',
 		},
 		editLink: {
-			pattern: 'https://github.com/deploymy/documentation/edit/main/:path',
+			pattern: 'https://github.com/deploystackio/documentation/edit/main/:path',
 			text: 'Edit on GitHub'
 		},
 		outline: {
 			level: [2,3]
 		},
     footer: {
-      message: '<a target=_blank href="https://deploy.my">Deploy.my</a> Documentation',
-      copyright: '<a target="_blank" rel="nofollow" href="https://deploy.my/privacy-policy">Privacy Policy</a> <strong>|</strong> <a target="_blank" rel="nofollow" href="https://deploy.my/cookie-policy">Cookie Policy</a>'
+      message: '<a target=_blank href="https://deploystack.io">DeployStack</a> Documentation',
+      copyright: '<a target="_blank" rel="nofollow" href="https://deploystack.io/privacy-policy">Privacy Policy</a> <strong>|</strong> <a target="_blank" rel="nofollow" href="https://deploystack.io/cookie-policy">Cookie Policy</a>'
     }     
   }
 })

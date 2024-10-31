@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://docs.deploy.my/sitemap.xml
+Sitemap: https://docs.deploystack.io/sitemap.xml

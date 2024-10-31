@@ -1,10 +1,10 @@
 ---
-description: Translate docker docker-compose.yml file into Render.com Infrastructure as Code with deploy.my
+description: Translate docker docker-compose.yml file into Render.com Infrastructure as Code with DeployStack
 ---
 
 # Render.com - Parser Full Documentation
 
-The parser for Render.com translates the `docker-compose.yml` file into Render [BluePrint](https://docs.render.com/infrastructure-as-code). The parser logic can be found in GitHub inside [docker-to-iac repo](https://github.com/deploymy/docker-to-iac/blob/main/src/parsers/render.ts).
+The parser for Render.com translates the `docker-compose.yml` file into Render [BluePrint](https://docs.render.com/infrastructure-as-code). The parser logic can be found in GitHub inside [docker-to-iac repo](https://github.com/deploystackio/docker-to-iac/blob/main/src/parsers/render.ts).
 
 ## Parser language abbreviation for API
 

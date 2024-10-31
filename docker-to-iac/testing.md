@@ -48,7 +48,7 @@ Just run `npm init` inside the dir `my-dev-end` and create a simple `index.js` f
 A test could look like this:
 
 ```javascript
-import { translate } from '@deploymy/docker-to-iac';
+import { translate } from '@deploystack/docker-to-iac';
 import { readFileSync, writeFileSync } from 'fs';
 
 // Read Docker Compose file content as plain text

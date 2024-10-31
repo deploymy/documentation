@@ -6,8 +6,8 @@ description: Introduction to the node module docker-to-iac which allows you to t
 
 Docker to IaC is a Node.js module that translates the `docker-compose.yml` file into various types of Infrastructure as Code (IaC) templates. The goal of the module is to make GitHub repositories with docker-compose more easily accessible to various cloud providers such as Amazon Web Services (AWS), Google Cloud, DigitalOcean, and so on.
 
-- GitHub repository: [github.com/deploymy/docker-to-iac](https://github.com/deploymy/docker-to-iac)
-- npm registry: [npmjs.com/package/@deploymy/docker-to-iac](https://www.npmjs.com/package/@deploymy/docker-to-iac)
+- GitHub repository: [github.com/deploystackio/docker-to-iac](https://github.com/deploystackio/docker-to-iac)
+- npm registry: [npmjs.com/package/@deploystack/docker-to-iac](https://www.npmjs.com/package/@deploystack/docker-to-iac)
 
 ## Motivation
 
@@ -35,8 +35,8 @@ After the successful translation, you can deploy your containers to your cloud p
 
 ## Help wanted
 
-We would be very happy if you could help us to extend the docker-to-iac module to include additional cloud providers (parsers). All open source repositories listed on our [deploy.my](https://deploy.my) website would benefit from this.
+We would be very happy if you could help us to extend the docker-to-iac module to include additional cloud providers (parsers). All open source repositories listed on our [deploystack.io](https://deploystack.io) website would benefit from this.
 
-If the docker-to-iac module is extended with another parser, our backend automatically creates an update for the repository [github.com/deploymy/deploy-templates](https://github.com/deploymy/deploy-templates). Baiscally: if you add a new parser for the provider "foo-cloud" that has its own IaC language, or one-click deployment supported, all open source projects listed on deploy.my will be extended with the IaC template for cloud provider "foo-cloud".
+If the docker-to-iac module is extended with another parser, our backend automatically creates an update for the repository [github.com/deploystackio/deploy-templates](https://github.com/deploystackio/deploy-templates). Baiscally: if you add a new parser for the provider "foo-cloud" that has its own IaC language, or one-click deployment supported, all open source projects listed on deploystack.io will be extended with the IaC template for cloud provider "foo-cloud".
 
 Thank you!
