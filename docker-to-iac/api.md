@@ -13,7 +13,7 @@ To list all available parsers, please use the `listAllParsers()` method.
 ### Example
 
 ```typescript
-import { listAllParsers } from '@deploymy/docker-to-iac';
+import { listAllParsers } from '@deploystack/docker-to-iac';
 
 const parsers = listAllParsers();
 
@@ -64,7 +64,7 @@ If you want to extract the `defaultParserConfig` object from a parser, the `getP
 ### Example
 
 ```typescript
-import { getParserInfo } from '@deploymy/docker-to-iac';
+import { getParserInfo } from '@deploystack/docker-to-iac';
 
 const awsInfo = getParserInfo('CFN');
 
@@ -100,7 +100,7 @@ Translate the `docker-compose.yml` file into target language you select.
 
 ```javascript
 import { readFileSync, writeFileSync } from 'fs';
-import { translate } from '@deploymy/docker-to-iac';
+import { translate } from '@deploystack/docker-to-iac';
 
 const dockerComposeContent = readFileSync('path/to/docker-compose.yml', 'utf8');
 
@@ -123,7 +123,7 @@ Parameters:
     Type: AWS::EC2::Subnet::Id
   ServiceName:
     Type: String
-    Default: DeployMyService
+    Default: DeployStackService
 Resources:
   Cluster:
     Type: AWS::ECS::Cluster

@@ -20,7 +20,7 @@ You can read how to get default parser values ​​through API [here](/docker-t
 
 ## Parser vs. Lanauge
 
-The [type `ParserInfo`](https://github.com/deploymy/docker-to-iac/blob/main/src/parsers/base-parser.ts) includes the splitting of vars between a `Provider` and `Language`. This is necessary because some providers allow multiple languages.
+The [type `ParserInfo`](https://github.com/deploystackio/docker-to-iac/blob/main/src/parsers/base-parser.ts) includes the splitting of vars between a `Provider` and `Language`. This is necessary because some providers allow multiple languages.
 
 AWS can be mentioned as an example here. In AWS, infrastructure can be created with:
 

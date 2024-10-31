@@ -1,16 +1,16 @@
 ---
 # https://vitepress.dev/reference/default-theme-home-page
 layout: home
-description: Documentation of the platform and the entire Deploy.My ecosystem. Read about our IaC templates and open source node modules, quickstart and usage.
-title: Deploy.My Module Developer and Platform Documentation
+description: Documentation of the platform and the entire DeployStack ecosystem. Read about our IaC templates and open source node modules, quickstart and usage.
+title: DeployStack Module Developer and Platform Documentation
 
 hero:
-  name: "Deploy.my Docs"
+  name: "DeployStack Docs"
   text: "Deploy Anywhere"
   tagline: "Convert docker-compose into IaC and One-Deploy Template"
   image:
-    src: /img/deploymy-logo-transparent-760x825.webp
-    alt: Deploy.my Documentation  
+    src: /img/deploystack-logo-transparent-760x825.webp
+    alt: DeployStack Documentation
   actions:
     - theme: brand
       text: Docker-to-IaC Docs
