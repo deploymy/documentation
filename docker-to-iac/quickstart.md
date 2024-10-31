@@ -9,7 +9,7 @@ description: Quickstart in the docker-to-iac node module with which you can tran
 First, install the module and its dependencies:
 
 ```bash
-npm i @deploymy/docker-to-iac
+npm i @deploystack/docker-to-iac
 ```
 
 ## Usage
@@ -17,7 +17,7 @@ npm i @deploymy/docker-to-iac
 Translating Docker Compose to AWS CloudFormation
 
 ```javascript
-import { translate } from '@deploymy/docker-to-iac';
+import { translate } from '@deploystack/docker-to-iac';
 import { readFileSync, writeFileSync } from 'fs';
 
 // Read Docker Compose file content as plain text

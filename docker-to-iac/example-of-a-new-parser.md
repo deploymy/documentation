@@ -34,8 +34,8 @@ class NewProviderParser extends BaseParser {
 
   getInfo(): ParserInfo {
     return {
-      website: "https://newprovider.deploy.my",
-      officialDocs: "https://docs.newprovider.deploy.my",
+      website: "https://newprovider.deploystack.io",
+      officialDocs: "https://docs.newprovider.deploystack.io",
       abbreviation: "NP",
       name: 'New Provider Cloud',
       defaultParserConfig: defaultParserConfig
@@ -97,4 +97,4 @@ The built output files are located under `dist/`
 
 ## Update the docs
 
-If you have made an improvement in code, please remember for the users of these modules to update our documentation. The rule for docs can be found in [deploymy/documentation README.md file](https://github.com/deploymy/documentation/blob/main/README.md).
+If you have made an improvement in code, please remember for the users of these modules to update our documentation. The rule for docs can be found in [deploystackio/documentation README.md file](https://github.com/deploystackio/documentation/blob/main/README.md).

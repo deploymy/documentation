@@ -1,14 +1,14 @@
 ---
-description: Before you start contributing to deploy.my and docker-to-iac, make sure you read this article.
+description: Before you start contributing to DeployStack and docker-to-iac, make sure you read this article.
 ---
 
 # Before you start contributing to docker-to-iac module
 
-Thank you for your interest in extending the module. Please remember that [docker-to-iac](https://github.com/deploymy/docker-to-iac) open-source module is the heart of the Deploy.My platform.
+Thank you for your interest in extending the module. Please remember that [docker-to-iac](https://github.com/deploystackio/docker-to-iac) open-source module is the heart of the DeployStack platform.
 
 ## Adding a new cloud provider
 
-This means: if your pull request will get approved, all existing applications in our catalog [https://deploy.my/c/](https://deploy.my/c) will be expanded to include another cloud provider that you want to add.
+This means: if your pull request will get approved, all existing applications in our catalog [https://deploystack.io/c/](https://deploystack.io/c) will be expanded to include another cloud provider that you want to add.
 
 That sounds great, you are helping all open source applications inside our catalog.
 

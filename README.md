@@ -1,12 +1,12 @@
-# Deploy.my Documentation
+# DeployStack Documentation
 
-This repository serves as documentation for the entire deploy.my ecosystem.
+This repository serves as documentation for the entire DeployStack ecosystem.
 
-If you would like to learn more, visit our website at [deploy.my](https://deploy.my).
+If you would like to learn more, visit our website at [deploystack.io](https://deploystack.io).
 
-![GitHub Release](https://img.shields.io/github/v/release/deploymy/documentation)
-![GitHub deployments](https://img.shields.io/github/deployments/deploymy/documentation/docs-deploy-my%20(Preview)?label=Preview%20Deployment)
-![GitHub deployments](https://img.shields.io/github/deployments/deploymy/documentation/docs-deploy-my%20(Production)?label=Prod%20Deployment)
+![GitHub Release](https://img.shields.io/github/v/release/deploystackio/documentation)
+![GitHub deployments](https://img.shields.io/github/deployments/deploystackio/documentation/docs-deploystack-io%20(Preview)?label=Preview%20Deployment)
+![GitHub deployments](https://img.shields.io/github/deployments/deploystackio/documentation/docs-deploystack-io%20(Production)?label=Prod%20Deployment)
 
 ## How to contribute
 
@@ -44,9 +44,9 @@ Our CI/CD pipeline is designed to ensure smooth integration and deployment proce
 
 1. **Feature Branches**: Start by creating a new feature branch from the `main` branch. Use descriptive names for feature branches like `feature/new-component` or `bugfix/issue-number`.
 2. **Pull Requests**: Once your feature or fix is ready, open a pull request (PR) against the `main` branch. Ensure your PR is well-documented and includes any necessary context for reviewers.
-3. **Merging**: After review, merge your PR into the `main` branch. The main branch deploys to preview environment of dosc.deploy.my. The preview link is always added as a comment in a GitHub action job for preview env release.
+3. **Merging**: After review, merge your PR into the `main` branch. The main branch deploys to preview environment of dosc.deploystack.io. The preview link is always added as a comment in a GitHub action job for preview env release.
 
-To deploy to the production environment, the `main` branch needs to be merged into the `prod` branch. The `prod` branch deploys to [production environment - https://docs.deploy.my](https://docs.deploy.my).
+To deploy to the production environment, the `main` branch needs to be merged into the `prod` branch. The `prod` branch deploys to [production environment - https://docs.deploystack.io](https://docs.deploystack.io).
 
 ### Semantic Release
 
@@ -59,8 +59,8 @@ Dependabot is activated to assist with dependency management:
 - Automatic pull requests for security vulnerabilities.
 - Weekly automated pull requests for npm module version upgrades.
 
-Configuration details can be found [here](https://github.com/deploymy/documentation/blob/main/.github/dependabot.yml).
+Configuration details can be found [here](https://github.com/deploystackio/documentation/blob/main/.github/dependabot.yml).
 
 ---
 
-We appreciate your contributions to the Deploy.my documentation project. By following these guidelines, you help ensure that the documentation remains accurate, up-to-date, and beneficial to all users of the ecosystem.
+We appreciate your contributions to the DeployStack documentation project. By following these guidelines, you help ensure that the documentation remains accurate, up-to-date, and beneficial to all users of the ecosystem.
