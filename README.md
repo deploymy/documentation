@@ -5,8 +5,8 @@ This repository serves as documentation for the entire DeployStack ecosystem.
 If you would like to learn more, visit our website at [deploystack.io](https://deploystack.io).
 
 ![GitHub Release](https://img.shields.io/github/v/release/deploystackio/documentation)
-![GitHub deployments](https://img.shields.io/github/deployments/deploystackio/documentation/docs-deploystack-io%20(Preview)?label=Preview%20Deployment)
-![GitHub deployments](https://img.shields.io/github/deployments/deploystackio/documentation/docs-deploystack-io%20(Production)?label=Prod%20Deployment)
+![GitHub deployments](https://img.shields.io/github/deployments/deploystackio/documentation/docs-deploy-my%20(Preview)?label=Preview%20Deployment)
+![GitHub deployments](https://img.shields.io/github/deployments/deploystackio/documentation/docs-deploy-my%20(Production)?label=Prod%20Deployment)
 
 ## How to contribute
 
