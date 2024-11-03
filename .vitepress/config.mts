@@ -98,7 +98,8 @@ export default defineConfig({
             link: 'parser',
             items: [
               { text: 'AWS CloudFormation', link: 'parser/aws-cloudformation' },
-              { text: 'Render.com', link: 'parser/render.com' }
+              { text: 'Render.com', link: 'parser/render.com' },
+              { text: 'DigitalOcean', link: 'parser/digitalocean' }
             ]
           },
           {

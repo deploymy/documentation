@@ -8,3 +8,4 @@ Here you can find the list of available [parsers](/docker-to-iac/parser-explanat
 
 - [AWS CloudFormation](/docker-to-iac/parser/aws-cloudformation.md)
 - [Render.com](/docker-to-iac/parser/render.com.md)
+- [DigitalOcean](/docker-to-iac/parser/digitalocean.md)
