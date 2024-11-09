@@ -32,7 +32,7 @@ console.log(parsers);
     languageOfficialDocs: 'https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html',
     languageAbbreviation: 'CFN',
     languageName: 'AWS CloudFormation',
-    defaultParserConfig: { cpu: 512, memory: '1GB', templateFormat: 'yaml' }
+    defaultParserConfig: { fileName: 'aws-cloudformation.yaml', cpu: 512, memory: '1GB', templateFormat: 'yaml' }
   },
   {
     providerWebsite: 'https://render.com/docs',
@@ -82,7 +82,7 @@ console.log(awsInfo);
     languageOfficialDocs: 'https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html',
     languageAbbreviation: 'CFN',
     languageName: 'AWS CloudFormation',
-    defaultParserConfig: { cpu: 512, memory: '1GB', templateFormat: 'yaml' }
+    defaultParserConfig: { fileName: 'aws-cloudformation.yaml', cpu: 512, memory: '1GB', templateFormat: 'yaml' }
 }
 ```
 
@@ -174,3 +174,53 @@ Currently we support:
 
 > [!IMPORTANT]  
 > For some IaC languages ​​it doesn't make sense to output them in text, JSON or YAML. For example: CloudFormation only accepts YAML or JSON. So be careful what you choose.
+
+## List Services API
+
+List all services from `docker-compose.yml` as JSON object.
+
+### Example
+
+```javascript
+import { readFileSync, writeFileSync } from 'fs';
+import { listServices } from '@deploystack/docker-to-iac';
+
+const dockerComposeContent = readFileSync('path/to/docker-compose.yml', 'utf8');
+
+const services = listServices(dockerComposeContent);
+console.log(services);
+```
+
+#### Output
+
+```json
+{
+  db: {
+    image: 'redis:latest',
+    ports: [ '6379:6379' ],
+    command: '',
+    restart: 'always',
+    volumes: [ 'rediscache:/data' ],
+    environment: {
+      PASSWORD: 'secret'
+    }
+  },
+  web: {
+    image: 'nginx:alpine',
+    ports: [ '80:80' ],
+    restart: 'always',
+    volumes: [ 'volumenginx:/var/www/html:z,ro' ],
+    environment: {}
+  }
+}
+```
+
+### Type
+
+```typescript
+listServices(dockerComposeContent: string): { [key: string]: DockerComposeService }
+```
+
+#### `dockerComposeContent`
+
+The docker compose content you want to translate.
