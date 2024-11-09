@@ -25,6 +25,11 @@ docker-to-iac/
 |       |-- aws-cloudformation.ts
 |       |-- render.ts
 |       |-- base-parser.ts
+|       |-- ...
+|   |-- utils/
+|       |-- parseDockerImage.ts
+|       |-- validateDockerCompose.ts
+|       |-- ...
 |-- test/
 |   |-- sample-docker-compose.yml
 |   |-- output/
