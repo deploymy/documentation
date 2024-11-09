@@ -89,7 +89,8 @@ export default defineConfig({
               { text: 'Quickstart', link: 'quickstart' },
               { text: 'API', link: 'api' },
               { text: 'Parser Explanation', link: 'parser-explanation' },
-              { text: 'Multi Services Support', link: 'multi-services-support' }
+              { text: 'Multi Services Support', link: 'multi-services-support' },
+              { text: 'Limitations', link: 'limitations' }
             ]
           },
           {

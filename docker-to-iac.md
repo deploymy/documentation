@@ -33,6 +33,12 @@ The principle of the translation is straightforward. You need a `docker-compose.
 
 After the successful translation, you can deploy your containers to your cloud provider.
 
+## Limitations
+
+- Only pre-build container possible
+
+Please read more at the [limitations page](/docker-to-iac/limitations.md)
+
 ## Help wanted
 
 We would be very happy if you could help us to extend the docker-to-iac module to include additional cloud providers (parsers). All open source repositories listed on our [deploystack.io](https://deploystack.io) website would benefit from this.

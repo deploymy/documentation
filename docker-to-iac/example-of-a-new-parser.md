@@ -20,6 +20,7 @@ import { BaseParser, ParserInfo, DockerCompose, TemplateFormat, formatResponse, 
 const defaultParserConfig: DefaultParserConfig = {
   cpu: 512,
   memory: '1GB',
+  fileName: 'awesome-iac.yaml',
   templateFormat: TemplateFormat.yaml
 };
 
@@ -66,6 +67,7 @@ Example for `defaultParserConfig`
 const defaultParserConfig: DefaultParserConfig = {
   cpu: 512,
   memory: '1GB',
+  fileName: 'awesome-iac.yaml',  
   templateFormat: TemplateFormat.yaml
 };
 ```
