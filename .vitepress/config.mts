@@ -90,6 +90,7 @@ export default defineConfig({
               { text: 'API', link: 'api' },
               { text: 'Parser Explanation', link: 'parser-explanation' },
               { text: 'Multi Services Support', link: 'multi-services-support' },
+              { text: 'Supported Registries', link: 'supported-registries' },
               { text: 'Limitations', link: 'limitations' }
             ]
           },
