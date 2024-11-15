@@ -4,6 +4,10 @@ description: Current limitations and constraints of the docker-to-iac module
 
 # Limitations
 
+## Registry Support
+
+The module currently supports Docker images from -> please check [Supported Registries for docker-to-iac module](/modules/docker-to-iac/supported-registries.md)
+
 ## Docker Image Requirement
 
 The `docker-to-iac` module is designed to work exclusively with pre-built Docker images. This means that each service in your `docker-compose.yml` file must specify an `image` property.
