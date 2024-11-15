@@ -20,7 +20,7 @@ npm run test
 
 When the test is executed, the `test.ts` file is triggered. If you have added a new parser, you should of course also add tests for your parser there.
 
-You can find a list of [all commands here](/docker-to-iac/available-commands.md).
+You can find a list of [all commands here](/modules/docker-to-iac/available-commands.md).
 
 ## Local test through `link`
 
@@ -60,6 +60,6 @@ const translatedConfig = translate(dockerComposeContent, 'CFN', 'yaml');
 console.log(translatedConfig);
 ```
 
-The test looks exactly like __[Quickstart](/docker-to-iac/quickstart.md)__ code snippet.
+The test looks exactly like __[Quickstart](/modules/docker-to-iac/quickstart.md)__ code snippet.
 
 Now you can go back to the module repository `docker-to-iac/` make some changes and run `npm run build`. You can then test the new changes in `my-dev-end/` dir by running `node index.js` for example.

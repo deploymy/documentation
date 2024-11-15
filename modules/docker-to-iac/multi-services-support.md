@@ -4,7 +4,7 @@ description: What does Multi Services Support mean when the docker-compose.yml f
 
 # Multi Services Support and what it's all about
 
-The term "multi service support" refers to the ability of a [parser](/docker-to-iac/parser-explanation.md) to interpret multiple services from a `docker-compose.yml` file.
+The term "multi service support" refers to the ability of a [parser](/modules/docker-to-iac/parser-explanation.md) to interpret multiple services from a `docker-compose.yml` file.
 
 ## Example docker-compose file
 
