@@ -13,11 +13,11 @@ hero:
     alt: DeployStack Documentation
   actions:
     - theme: brand
+      text: DeployStack Docs
+      link: /deploystack
+    - theme: alt
       text: Docker-to-IaC Docs
       link: /docker-to-iac
-    # - theme: alt
-    #   text: API Examples
-    #   link: /api-examples
 
 features:
   - title: "Hassle-free Deployment"

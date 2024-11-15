@@ -50,4 +50,4 @@ Multi `services` support for DigitalOcean: __yes__
 
 DigitalOcean supports multiple services in a single App Spec file.
 
-Please read more about [multi service support here](/docker-to-iac/multi-services-support.md).
+Please read more about [multi service support here](/modules/docker-to-iac/multi-services-support.md).

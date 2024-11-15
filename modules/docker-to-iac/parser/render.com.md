@@ -52,4 +52,4 @@ Multi `services` support for Render.com: __yes__
 
 Since [multi services](https://docs.render.com/blueprint-spec#root-level-fields) feature is supported.
 
-Please read more about [multi service support here](/docker-to-iac/multi-services-support.md).
+Please read more about [multi service support here](/modules/docker-to-iac/multi-services-support.md).
