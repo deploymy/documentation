@@ -15,6 +15,6 @@ DeployStack helps you deploy Docker Compose applications across different cloud 
 
 ## Additional Resources
 
-- [Docker-to-IaC Module Documentation](/modules/docker-to-iac/introduction.md)
+- [Docker-to-IaC Module Documentation](/modules/docker-to-iac)
 - [Join our Discord](https://discord.gg/UjFWwByB)
 - [Visit DeployStack](https://deploystack.io)
