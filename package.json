@@ -13,6 +13,6 @@
     "@semantic-release/github": "^11.0.1",
     "markdownlint-cli": "^0.42.0",
     "vitepress": "^1.5.0",
-    "vue": "^3.5.12"
+    "vue": "^3.5.13"
   }
 }
