@@ -1,5 +1,5 @@
 ---
-description: Explanation of the term parser. What we mean by a parser in the context of docker-to-iac module.
+description: Understand how parsers translate Docker Compose files into cloud-specific Infrastructure as Code templates. Learn about provider configurations and language support.
 ---
 
 # Term Parser Explanation in context of docker-to-iac
