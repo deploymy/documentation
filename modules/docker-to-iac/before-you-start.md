@@ -1,5 +1,5 @@
 ---
-description: Before you start contributing to DeployStack and docker-to-iac, make sure you read this article.
+description: Contribute to DeployStack by adding cloud providers that support Docker runtime and infrastructure as code. Your work benefits the entire open-source community.
 ---
 
 # Before you start contributing to docker-to-iac module

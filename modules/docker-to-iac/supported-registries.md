@@ -1,5 +1,5 @@
 ---
-description: Learn how docker-to-iac handles Docker Hub, GHCR, and custom registries - with real examples that just work.
+description: Complete guide to Docker registries in docker-to-iac - From official Docker Hub images to GHCR, learn supported formats with practical examples.
 ---
 
 # Supported Registries for docker-to-iac module

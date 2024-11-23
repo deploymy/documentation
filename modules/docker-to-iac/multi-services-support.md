@@ -1,5 +1,5 @@
 ---
-description: What does Multi Services Support mean when the docker-compose.yml file is transferred to IaC temapltes
+description: Learn about multi-service deployment support - See how docker-to-iac translates multiple Docker Compose services into cloud provider templates.
 ---
 
 # Multi Services Support and what it's all about
