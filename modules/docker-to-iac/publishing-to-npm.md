@@ -1,5 +1,5 @@
 ---
-description: Here you will learn how our CI/CD publish mechanism to npm works for docker-to-iac module.
+description: Explore our automated NPM publishing workflow for docker-to-iac. From pull request to package release, understand how we ensure quality through CI/CD.
 ---
 
 # Publishing docker-to-iac module to NPM
