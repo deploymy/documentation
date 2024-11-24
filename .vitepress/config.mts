@@ -147,7 +147,7 @@ export default defineConfig({
   description: "DeployStack Full Documentation and API",
   head: [
     ['meta', { name: "google-site-verification", content: "mK205yW9P5vsKa_6QqOyqCY0NvODBGcprdOUkDC0nDA"}],
-    ['link', { name: "msvalidate.01", content: "69131F27CFE1B3D8A4656AE43A545E32"}],
+    ['meta', { name: "msvalidate.01", content: "69131F27CFE1B3D8A4656AE43A545E32"}],
     ['link', { rel: "icon", type: "image/png", sizes: "32x32", href: "/img/favicon-32-32.png"}],
     ['link', { rel: "icon", type: "image/png", sizes: "16x16", href: "/img/favicon-16-16.png"}],    
     ['link', { rel: "shortcut icon", href: "/img/favicon.png"}],
