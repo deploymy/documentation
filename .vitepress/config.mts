@@ -1,15 +1,108 @@
 import { defineConfig, type DefaultTheme } from 'vitepress'
+import type { PageData } from 'vitepress'
+
+function getSchemaOrgData(pageData: PageData) {
+  const pageUrl = `https://docs.deploystack.io/${pageData.relativePath}`
+    .replace(/index\.md$/, '')
+    .replace(/\.md$/, '');
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@id": "https://deploystack.io/#identity",
+        "@type": "Organization",
+        "name": "DeployStack.io",
+        "url": "https://deploystack.io",
+        "sameAs": [
+          "https://twitter.com/deploystack"
+        ]
+      },
+      {
+        "@id": "https://docs.deploystack.io/#website",
+        "@type": "WebSite",
+        "inLanguage": "en",
+        "name": "DeployStack Documentation",
+        "url": "https://docs.deploystack.io/",
+        "publisher": {
+          "@id": "https://deploystack.io/#identity"
+        },
+        "workTranslation": []
+      },
+      {
+        "@id": `${pageUrl}/#webpage`,
+        "description": pageData.description || "DeployStack Documentation and API Reference",
+        "name": pageData.title,
+        "url": pageUrl,
+        "@type": [
+          "WebPage"
+        ],
+        "about": {
+          "@id": "https://deploystack.io/#identity"
+        },
+        "isPartOf": {
+          "@id": "https://deploystack.io/#website"
+        },
+        "potentialAction": [
+          {
+            "@type": "ReadAction",
+            "target": [
+              pageUrl
+            ]
+          }
+        ],
+        "primaryImageOfPage": {
+          "@id": pageUrl
+        }
+      },
+      {
+        "@id": `${pageUrl}/#article`,
+        "description": pageData.description || "DeployStack Documentation and API Reference",
+        "headline": pageData.title,
+        "inLanguage": "en",
+        "@type": [
+          "Article",
+          "BlogPosting"
+        ],
+        "isPartOf": {
+          "@id": `${pageUrl}/#webpage`
+        },
+        "mainEntityOfPage": {
+          "@id": `${pageUrl}/#webpage`
+        },
+        "publisher": {
+          "@id": "https://deploystack.io/#identity"
+        }
+      },
+      {
+        "@id": pageUrl,
+        "@type": "ImageObject",
+        "caption": "DeployStack.io",
+        "contentUrl": "https://cdnx.deploystack.io/logo/deploystack-logo.png",
+        "inLanguage": "en",
+        "url": "https://cdnx.deploystack.io/logo/deploystack-logo.png"
+      }
+    ]
+  };
+}
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   transformPageData(pageData) {
-
     const canonicalUrl = `https://docs.deploystack.io/${pageData.relativePath}`
       .replace(/index\.md$/, '')
       .replace(/\.md$/, '');
 
     pageData.frontmatter.head ??= []
 
+    // Add Schema.org JSON-LD
+    pageData.frontmatter.head.push([
+      'script',
+      { type: 'application/ld+json' },
+      JSON.stringify(getSchemaOrgData(pageData))
+    ]);
+
+    // Add existing OpenGraph tags
     pageData.frontmatter.head.push([
       'meta',
       {
@@ -46,8 +139,6 @@ export default defineConfig({
       'link',
       { rel: 'canonical', href: canonicalUrl }
     ]);
-    
-    // return head
   },  
   lang: 'en-US',
   title: "DeployStack Docs",
@@ -56,6 +147,7 @@ export default defineConfig({
   description: "DeployStack Full Documentation and API",
   head: [
     ['meta', { name: "google-site-verification", content: "mK205yW9P5vsKa_6QqOyqCY0NvODBGcprdOUkDC0nDA"}],
+    ['link', { name: "msvalidate.01", content: "69131F27CFE1B3D8A4656AE43A545E32"}],
     ['link', { rel: "icon", type: "image/png", sizes: "32x32", href: "/img/favicon-32-32.png"}],
     ['link', { rel: "icon", type: "image/png", sizes: "16x16", href: "/img/favicon-16-16.png"}],    
     ['link', { rel: "shortcut icon", href: "/img/favicon.png"}],
@@ -68,11 +160,11 @@ export default defineConfig({
   srcExclude: ['**/README.md'],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
-		logo: {
-			light: '/img/deploystack-logo-transparent-22x24.webp',
-			dark: '/img/deploystack-logo-transparent-22x24.webp',
+    logo: {
+      light: '/img/deploystack-logo-transparent-22x24.webp',
+      dark: '/img/deploystack-logo-transparent-22x24.webp',
       alt: 'DeployStack Logo'
-		}, 
+    }, 
     nav: [
       { text: 'DeployStack Docs', link: '/deploystack/getting-started.md' },
       { text: 'Docker-To-IaC Docs', link: '/modules/docker-to-iac' },
@@ -86,16 +178,16 @@ export default defineConfig({
       { icon: 'twitter', link: 'https://x.com/deploystack' },
       { icon: 'github', link: 'https://github.com/deploystackio' }
     ],
-		search: {
-			provider: 'local',
-		},
-		editLink: {
-			pattern: 'https://github.com/deploystackio/documentation/edit/main/:path',
-			text: 'Edit on GitHub'
-		},
-		outline: {
-			level: [2,3]
-		},
+    search: {
+      provider: 'local',
+    },
+    editLink: {
+      pattern: 'https://github.com/deploystackio/documentation/edit/main/:path',
+      text: 'Edit on GitHub'
+    },
+    outline: {
+      level: [2,3]
+    },
     footer: {
       message: '<a target=_blank href="https://deploystack.io">DeployStack</a> Documentation',
       copyright: '<a target="_blank" rel="nofollow" href="https://deploystack.io/privacy-policy">Privacy Policy</a> <strong>|</strong> <a target="_blank" rel="nofollow" href="https://deploystack.io/cookie-policy">Cookie Policy</a>'
