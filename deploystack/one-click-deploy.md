@@ -1,5 +1,5 @@
 ---
-description: Technical documentation for DeployStack's one-click deployment feature. Covers infrastructure template generation, cloud provider integration, and deployment button configuration.
+description: Technical docs for DeployStack's one-click deployment feature. Covers infrastructure template generation, cloud provider integration, and button configuration.
 ---
 
 # One-Click Deploy

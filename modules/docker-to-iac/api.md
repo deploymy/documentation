@@ -1,5 +1,5 @@
 ---
-description: List of all available APIs for the docker-to-iac module. List of all parsers, get parser information and translate API.
+description: Here's everything you need to know about our docker-to-iac module - from listing available cloud providers to converting your Docker setup into deployable code.
 ---
 
 # docker-to-iac module API list
