@@ -137,7 +137,7 @@ This indicates an unexpected error in our validation process.
 ## General Troubleshooting Tips
 
 1. Validate your docker-compose file locally before submission
-2. Ensure your repository meets all [requirements](/deploystack/docker-compose-requirements.md)
+2. Ensure your repository meets all [requirements](/docs/deploystack/docker-compose-requirements.md)
 3. Check that all services use supported configurations
 4. Verify your repository is public and accessible
 
