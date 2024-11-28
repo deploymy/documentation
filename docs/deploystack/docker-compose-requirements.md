@@ -89,5 +89,5 @@ When you submit your repository, we perform these checks:
 
 ## Next Steps
 
-- See how [One-Click Deploy](/deploystack/one-click-deploy.md) works
-- Check the [Troubleshooting](/deploystack/troubleshooting.md) guide if you run into issues
+- See how [One-Click Deploy](/docs/deploystack/one-click-deploy.md) works
+- Check the [Troubleshooting](/docs/deploystack/troubleshooting.md) guide if you run into issues
