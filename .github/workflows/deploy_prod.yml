@@ -17,16 +17,11 @@ jobs:
     permissions:
       contents: read
       deployments: write
-    name: Deploy to Cloudflare Pages
+    name: Deploy to DeployStack.io
+    environment:
+      name: 'Production'
+      url: https://deploystack.io/docs
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - run: npm ci && npm run docs:build
-      - name: Publish
-        uses: cloudflare/pages-action@v1
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: 'docs-deploy-my' # e.g. 'my-project'
-          directory: '.vitepress/dist' # e.g. 'dist'
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+      - run: echo "Executing webhook to deploy"
