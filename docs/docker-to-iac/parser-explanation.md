@@ -8,7 +8,7 @@ A parser always represents a selected IaC (Infrastructure as Code) or One-Click 
 
 ## API
 
-If you are looking for [parser API, click here](/modules/docker-to-iac/api.md).
+If you are looking for [parser API, click here](/docs/docker-to-iac/api.md).
 
 ## Default Parser Config
 
@@ -16,7 +16,7 @@ Each parser has its own config when it comes to default values. This is necessar
 
 Example: for AWS you can allocate a minimum of 256 CPU for a docker container in fargate. For DigitalOcean the [minimum setting is 1 vCPU](https://www.digitalocean.com/pricing/app-platform). Therefore the default config is necessary.
 
-You can read how to get default parser values ​​through API [here](/modules/docker-to-iac/api.md#get-parser-info).
+You can read how to get default parser values ​​through API [here](/docs/docker-to-iac/api.md#get-parser-info).
 
 ## Parser vs. Lanauge
 
@@ -28,7 +28,7 @@ AWS can be mentioned as an example here. In AWS, infrastructure can be created w
 - AWS CDK (i.e. for TypeScript)
 - Terraform
 
-Therefore, when we add a new parser, check if multiple IaC languages ​​are possible. Keep this in mind when naming the new parser in directory `src/parsers/<IAC_LANGUAGE_FILE_NAME>.ts`. This is also the reason why the [`translate()`](/modules/docker-to-iac/api.md#translate-api) method asks for the target IaC language name (i.e. `CFN`) and not for the provider name (i.e. `AWS`).
+Therefore, when we add a new parser, check if multiple IaC languages ​​are possible. Keep this in mind when naming the new parser in directory `src/parsers/<IAC_LANGUAGE_FILE_NAME>.ts`. This is also the reason why the [`translate()`](/docs/docker-to-iac/api.md#translate-api) method asks for the target IaC language name (i.e. `CFN`) and not for the provider name (i.e. `AWS`).
 
 ## Examples
 

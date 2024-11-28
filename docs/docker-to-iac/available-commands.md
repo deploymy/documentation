@@ -13,6 +13,6 @@ The following commands are currently supported:
 - `npm run test`
   - Runs the tests defined in the `test/test.ts` file. The tests are also part of the GitHub action pipeline for new pull requests into `main`.
 - `npm run semantic-release`
-  - Runs the semantic-release command which is part of the release process of [docker-to-iac](https://www.npmjs.com/package/@deploystack/docker-to-iac) modules to npm registry. The release is executed through a [GitHub action pipeline](/modules/docker-to-iac/publishing-to-npm.md).
+  - Runs the semantic-release command which is part of the release process of [docker-to-iac](https://www.npmjs.com/package/@deploystack/docker-to-iac) modules to npm registry. The release is executed through a [GitHub action pipeline](/docs/docker-to-iac/publishing-to-npm.md).
 
 View all commands config from [package.json](https://github.com/deploystackio/docker-to-iac/blob/main/package.json).

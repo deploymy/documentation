@@ -50,4 +50,4 @@ For __services__:
 
 Multi `services` support for CloudFormation: __yes__
 
-Please read more about [multi service support here](/modules/docker-to-iac/multi-services-support.md).
+Please read more about [multi service support here](/docs/docker-to-iac/multi-services-support.md).

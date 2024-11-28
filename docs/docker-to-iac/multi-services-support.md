@@ -4,7 +4,7 @@ description: Learn about multi-service deployment support - See how docker-to-ia
 
 # Multi Services Support and what it's all about
 
-The term "multi service support" refers to the ability of a [parser](/modules/docker-to-iac/parser-explanation.md) to interpret multiple services from a `docker-compose.yml` file.
+The term "multi service support" refers to the ability of a [parser](/docs/docker-to-iac/parser-explanation.md) to interpret multiple services from a `docker-compose.yml` file.
 
 ## Example docker-compose file
 

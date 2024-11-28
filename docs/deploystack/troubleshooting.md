@@ -96,7 +96,7 @@ This error occurs when our system cannot convert your docker-compose configurati
 **Solution:**
 
 - Simplify your docker-compose configuration
-- Review our [supported features documentation](/modules/docker-to-iac/supported-docker-compose-variables)
+- Review our [supported features documentation](/docs/docker-to-iac/supported-docker-compose-variables)
 - Ensure all services use supported configurations
 
 ## Error Listing Services from Docker Compose
@@ -147,4 +147,4 @@ If you're still experiencing issues:
 
 - Join our [Discord community](https://discord.gg/UjFWwByB)
 - Check our [Docker Compose Requirements](/deploystack/docker-compose-requirements)
-- Review [supported features](/modules/docker-to-iac/supported-docker-compose-variables)
+- Review [supported features](/docs/docker-to-iac/supported-docker-compose-variables)

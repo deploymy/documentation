@@ -10,7 +10,7 @@ DeployStack leverages existing deployment technologies from cloud providers to m
 
 When you submit your repository to [deploystack.io/submit](https://deploystack.io/submit), we:
 
-1. Generate Infrastructure as Code (IaC) templates for [supported cloud providers](/modules/docker-to-iac/parser.md)
+1. Generate Infrastructure as Code (IaC) templates for [supported cloud providers](/docs/docker-to-iac/parser.md)
 2. Store these templates in our [deploy-templates repository](https://github.com/deploystackio/deploy-templates)
 3. Create provider-specific deployment buttons for your README.md -> by [deploystack.io/deploy-button](https://deploystack.io/deploy-button)
 
@@ -39,7 +39,7 @@ We create a dedicated branch for each project to support one-click deployment fu
 We integrate with cloud providers' native deployment systems. For example:
 
 - **DigitalOcean**: Uses the "Deploy to DigitalOcean" functionality as documented in their [official guide](https://docs.digitalocean.com/products/app-platform/how-to/add-deploy-do-button/)
-- Check [supported cloud providers](/modules/docker-to-iac/parser.md) for full list
+- Check [supported cloud providers](/docs/docker-to-iac/parser.md) for full list
 
 ### Provider-Specific Templates
 

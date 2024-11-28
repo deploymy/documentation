@@ -6,7 +6,7 @@ description: Current limitations and constraints of the docker-to-iac module
 
 ## Registry Support
 
-The module currently supports Docker images from -> please check [Supported Registries for docker-to-iac module](/modules/docker-to-iac/supported-registries.md)
+The module currently supports Docker images from -> please check [Supported Registries for docker-to-iac module](/docs/docker-to-iac/supported-registries.md)
 
 ## Docker Image Requirement
 
