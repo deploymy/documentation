@@ -1,0 +1,62 @@
+[
+  {
+    "text": "DeployStack",
+    "link": "/docs/deploystack",
+    "items": [
+      {
+        "text": "Getting Started",
+        "link": "/docs/deploystack/getting-started.md"
+      },
+      {
+        "text": "One Click Deploy",
+        "link": "/docs/deploystack/one-click-deploy.md"
+      },
+      {
+        "text": "Docker Compose Requirements",
+        "link": "/docs/deploystack/docker-compose-requirements.md"
+      },
+      {
+        "text": "Troubleshooting",
+        "link": "/docs/deploystack/troubleshooting.md"        
+      }
+    ]
+  },
+  {
+    "text": "Docker-To-IaC",
+    "link": "/docs/docker-to-iac",
+    "items": [
+      {
+        "text": "Usage & Concept",
+        "items": [
+          { "text": "Quickstart", "link": "/docs/docker-to-iac/quickstart.md" },
+          { "text": "API", "link": "/docs/docker-to-iac/api.md" },
+          { "text": "Parser Explanation", "link": "/docs/docker-to-iac/parser-explanation.md" },
+          { "text": "Multi Services Support", "link": "/docs/docker-to-iac/multi-services-support.md" },
+          { "text": "Supported Docker Compose Variables", "link": "/docs/docker-to-iac/supported-docker-compose-variables.md" },
+          { "text": "Supported Registries", "link": "/docs/docker-to-iac/supported-registries.md" },
+          { "text": "Limitations", "link": "/docs/docker-to-iac/limitations" }          
+        ]
+      },
+      {
+        "text": "Parsers",
+        "link": "/docs/docker-to-iac/parser.md",
+        "items": [
+          { "text": "AWS CloudFormation", "link": "/docs/docker-to-iac/parser/aws-cloudformation.md" },
+          { "text": "Render.com", "link": "/docs/docker-to-iac/parser/render.com.md" },
+          { "text": "DigitalOcean", "link": "/docs/docker-to-iac/parser/digitalocean" }
+        ]
+      },
+      {
+        "text": "Development",
+        "items": [
+          { "text": "Before you Start", "link": "/docs/docker-to-iac/before-you-start.md" },
+          { "text": "Available Commands", "link": "/docs/docker-to-iac/available-commands.md" },
+          { "text": "Project Structure", "link": "/docs/docker-to-iac/project-structure.md" },
+          { "text": "Testing", "link": "/docs/docker-to-iac/testing.md" },
+          { "text": "Example of a New Parser", "link": "/docs/docker-to-iac/example-of-a-new-parser.md" },
+          { "text": "Publishing to npm", "link": "/docs/docker-to-iac/publishing-to-npm.md" }
+        ]
+      }      
+    ]
+  }
+]

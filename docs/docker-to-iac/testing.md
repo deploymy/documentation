@@ -118,6 +118,6 @@ The test suite provides clear console output indicating success (✓) or failure
 - The test process will exit with code 1
 - GitHub Actions will fail the PR check
 
-You can find a list of [all available commands here](/modules/docker-to-iac/available-commands.md).
+You can find a list of [all available commands here](/docs/docker-to-iac/available-commands.md).
 
 Remember to check the generated outputs in `test/output/` to verify that your parser produces the expected results across all formats.

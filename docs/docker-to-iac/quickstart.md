@@ -30,4 +30,4 @@ console.log(translatedConfig);
 writeFileSync('output-aws.json', JSON.stringify(translatedConfig, null, 2));
 ```
 
-For more examples, please visit the [API page](/modules/docker-to-iac/api.md). All supported parsers can be found in the sidebar on the left.
+For more examples, please visit the [API page](/docs/docker-to-iac/api.md). All supported parsers can be found in the sidebar on the left.

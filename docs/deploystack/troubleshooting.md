@@ -80,7 +80,7 @@ The submitted docker-compose file doesn't meet the required format or contains u
 **Solution:**
 
 - Validate your docker-compose file syntax
-- Check our [Docker Compose Requirements](/deploystack/docker-compose-requirements) page
+- Check our [Docker Compose Requirements](/deploystack/docker-compose-requirements.md) page
 - Ensure you're using supported features only
 
 ## Error Converting Docker Compose to IaC
@@ -96,7 +96,7 @@ This error occurs when our system cannot convert your docker-compose configurati
 **Solution:**
 
 - Simplify your docker-compose configuration
-- Review our [supported features documentation](/modules/docker-to-iac/supported-docker-compose-variables)
+- Review our [supported features documentation](/docs/docker-to-iac/supported-docker-compose-variables.md)
 - Ensure all services use supported configurations
 
 ## Error Listing Services from Docker Compose
@@ -137,7 +137,7 @@ This indicates an unexpected error in our validation process.
 ## General Troubleshooting Tips
 
 1. Validate your docker-compose file locally before submission
-2. Ensure your repository meets all [requirements](/deploystack/docker-compose-requirements)
+2. Ensure your repository meets all [requirements](/deploystack/docker-compose-requirements.md)
 3. Check that all services use supported configurations
 4. Verify your repository is public and accessible
 
@@ -146,5 +146,5 @@ This indicates an unexpected error in our validation process.
 If you're still experiencing issues:
 
 - Join our [Discord community](https://discord.gg/UjFWwByB)
-- Check our [Docker Compose Requirements](/deploystack/docker-compose-requirements)
-- Review [supported features](/modules/docker-to-iac/supported-docker-compose-variables)
+- Check our [Docker Compose Requirements](/deploystack/docker-compose-requirements.md)
+- Review [supported features](/docs/docker-to-iac/supported-docker-compose-variables.md)
