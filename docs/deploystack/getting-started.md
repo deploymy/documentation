@@ -26,7 +26,7 @@ You'll need:
 2. Drop your GitHub repo URL into the submit box
 3. Hit submit, After about 3 seconds, the IaC templates are generated, and you get the links. Your project is stored in our catalog at [deploystack.io/c](https://deploystack.io/c)
 
-We'll scan your docker-compose.yml file and create infrastructure templates for AWS CloudFormation, DigitalOcean, and Render.com -> check the complete list here: [docker-to-iac parsers](/modules/docker-to-iac/parser.md). These templates go into our public template repository at [github.com/deploystackio/deploy-templates](https://github.com/deploystackio/deploy-templates).
+We'll scan your docker-compose.yml file and create infrastructure templates for AWS CloudFormation, DigitalOcean, and Render.com -> check the complete list here: [docker-to-iac parsers](/docs/docker-to-iac/parser.md). These templates go into our public template repository at [github.com/deploystackio/deploy-templates](https://github.com/deploystackio/deploy-templates).
 
 ## Making Life Easier for Your Users
 
