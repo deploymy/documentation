@@ -22,7 +22,7 @@ Type = "[Web Service](https://docs.render.com/blueprint-spec#type)".
 
 Render dashboard will list all your web services. At the top, you can switch between Dashboard and BluePrints.
 
-![Render BluePrints](/public/img-docs/docker-to-iac/render.com-dashboard-blueprints.png)
+![Render BluePrints](/docs/assets/images/docker-to-iac/render.com-dashboard-blueprints.png)
 
 After the BluePrint has been created through one-click deployment, the BluePrint will be visible in the BluePrint menu.
 

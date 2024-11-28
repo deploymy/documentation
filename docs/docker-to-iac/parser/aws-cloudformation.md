@@ -20,7 +20,7 @@ If you have the [default VPC](https://docs.aws.amazon.com/vpc/latest/userguide/d
 
 The architecture deploys an ECS service into a serverless [AWS Fargate](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html) cluster. An ECS service = service from `docker-compose.yml`. This means if you have two services in your docker-compose file, you will end up deploying two ECS services into your Fargate cluster.
 
-![AWS Architecture](/public/img-docs/docker-to-iac/aws-fargate.drawio.png)
+![AWS Architecture](/docs/assets/images/docker-to-iac/aws-fargate.drawio.png)
 
 The tasks within ECS services create an ENI that has a public IP address. Since we do not use an ALB ([Application Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html)), you can only access the tasks via the port and the public IP address.
 
