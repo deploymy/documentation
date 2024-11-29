@@ -32,7 +32,7 @@ Ensure that all assets are referenced using relative paths in your markdown file
 
 For images, please when possible use `.webp` format.
 
-If you want to create architectures or diagrams, please use [draw.io](https://draw.io/). You can use draw.io without creating an account. When exporting a diagram, make sure that it contains the draw.io content. This allows the diagram to be edited for future changes.
+If you want to create architectures or diagrams, please use [draw.io](https://app.diagrams.net/). You can use draw.io without creating an account. When exporting a diagram, make sure that it contains the draw.io content. This allows the diagram to be edited for future changes.
 
 File -> Export as PNG -> Check Include a copy of my diagram (All Pages).
 

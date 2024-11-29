@@ -1,13 +1,19 @@
 {
   "version": "0.0.0-development",
   "name": "deploystack-io-documentation",
+  "type": "module",
   "private": true,
   "scripts": {
-    "lint:md": "markdownlint '**/*.md' --ignore node_modules",
+    "lint:md": "npx markdownlint-cli2 '**/*.md' '#node_modules' '#.github'",
+    "lint:links": "remark . --quiet --frail --use remark-lint-no-dead-urls",
     "semantic-release": "semantic-release"
   },
   "devDependencies": {
     "@semantic-release/github": "^11.0.1",
-    "markdownlint-cli": "^0.42.0"
+    "markdownlint-cli": "^0.42.0",
+    "markdownlint-cli2": "^0.15.0",
+    "remark-cli": "^12.0.1",
+    "remark-lint-no-dead-urls": "^2.0.1",
+    "unist-util-visit": "^5.0.0"
   }
 }
