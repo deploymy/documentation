@@ -1,5 +1,6 @@
 # Dependencies
 node_modules/
+.github/
 # Optional npm cache directory
 .npm
 # Yarn Dependency directories

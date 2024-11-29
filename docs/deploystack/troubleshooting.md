@@ -80,7 +80,7 @@ The submitted docker-compose file doesn't meet the required format or contains u
 **Solution:**
 
 - Validate your docker-compose file syntax
-- Check our [Docker Compose Requirements](/deploystack/docker-compose-requirements.md) page
+- Check our [Docker Compose Requirements](/docs/deploystack/docker-compose-requirements.md) page
 - Ensure you're using supported features only
 
 ## Error Converting Docker Compose to IaC
@@ -121,7 +121,7 @@ This indicates an unexpected error in our validation process.
 
 **What it means:**
 
-- The error is on our end :D
+- The error is on our end
 - The issue isn't related to your repository or configuration
 - We needs to investigate
 
@@ -146,5 +146,5 @@ This indicates an unexpected error in our validation process.
 If you're still experiencing issues:
 
 - Join our [Discord community](https://discord.gg/UjFWwByB)
-- Check our [Docker Compose Requirements](/deploystack/docker-compose-requirements.md)
+- Check our [Docker Compose Requirements](/docs/deploystack/docker-compose-requirements.md)
 - Review [supported features](/docs/docker-to-iac/supported-docker-compose-variables.md)

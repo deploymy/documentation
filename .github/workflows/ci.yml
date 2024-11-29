@@ -33,6 +33,9 @@ jobs:
       - name: Run Markdown ESLint
         run: npm run lint:md
 
+      - name: Run Lint Links
+        run: npm run lint:links
+
   release:
     name: Run Release
     runs-on: ubuntu-latest

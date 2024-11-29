@@ -26,7 +26,7 @@ You'll need:
 2. Drop your GitHub repo URL into the submit box
 3. Hit submit, After about 3 seconds, the IaC templates are generated, and you get the links. Your project is stored in our catalog at [deploystack.io/c](https://deploystack.io/c)
 
-We'll scan your docker-compose.yml file and create infrastructure templates for AWS CloudFormation, DigitalOcean, and Render.com -> check the complete list here: [docker-to-iac parsers](/docs/docker-to-iac/parser.md). These templates go into our public template repository at [github.com/deploystackio/deploy-templates](https://github.com/deploystackio/deploy-templates).
+We'll scan your docker-compose.yml file and create infrastructure templates for AWS CloudFormation, DigitalOcean, and Render.com -> check the complete list here: [docker-to-iac parsers](/docs/docker-to-iac/index.md). These templates go into our public template repository at [github.com/deploystackio/deploy-templates](https://github.com/deploystackio/deploy-templates).
 
 ## Making Life Easier for Your Users
 
@@ -55,12 +55,12 @@ Drop your repo URL into DeployStack, and we'll create all the infrastructure tem
 
 ## What's Next?
 
-- Check out [Docker Compose Requirements](./docker-compose-requirements.md) to understand what we can handle
-- See how [One-Click Deploy](./one-click-deploy.md) works in the background
+- Check out [Docker Compose Requirements](/docs/deploystack/docker-compose-requirements.md) to understand what we can handle
+- See how [One-Click Deploy](/docs/deploystack/one-click-deploy.md) works in the background
 
 ## Need Help?
 
-Check our [Troubleshooting](./troubleshooting.md) guide. Still stuck? [Check our discord](https://discord.gg/UjFWwByB).
+Check our [Troubleshooting](/docs/deploystack/troubleshooting.md) guide. Still stuck? [Check our discord](https://discord.gg/UjFWwByB).
 
 ## Pro Tips
 
