@@ -1,5 +1,5 @@
 {
-  "customRules": ["markdown-rules/absoluteLinks.js"],
+  "customRules": ["./markdown-rules/absoluteLinks.js"],
   "config": {
     "absolute-links": true
   }

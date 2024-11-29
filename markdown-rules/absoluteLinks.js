@@ -1,6 +1,6 @@
-const { URL } = require('url');
+import { URL } from 'url';
 
-module.exports = {
+export default {
   names: ['absolute-links'],
   description: 'Links should be absolute and start with /docs/',
   tags: ['links'],
