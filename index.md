@@ -14,10 +14,10 @@ hero:
   actions:
     - theme: brand
       text: DeployStack Docs
-      link: /deploystack/getting-started.md
+      link: /docs/deploystack/getting-started.md
     - theme: alt
       text: Docker-to-IaC Docs
-      link: /modules/docker-to-iac
+      link: /docs/modules/docker-to-iac
 
 features:
   - title: "Hassle-free Deployment"

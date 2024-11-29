@@ -4,7 +4,7 @@ description: Translate docker docker-compose.yml file into Render.com Infrastruc
 
 # Render.com - Parser Full Documentation
 
-The parser for Render.com translates the `docker-compose.yml` file into Render [BluePrint](https://docs.render.com/infrastructure-as-code). The parser logic can be found in GitHub inside [docker-to-iac repo](https://github.com/deploystackio/docker-to-iac/blob/main/src/parsers/render.ts).
+The parser for Render.com translates the `docker-compose.yml` file into Render [BluePrint](https://render.com/docs/infrastructure-as-code). The parser logic can be found in GitHub inside [docker-to-iac repo](https://github.com/deploystackio/docker-to-iac/blob/main/src/parsers/render.ts).
 
 ## Parser language abbreviation for API
 
@@ -18,7 +18,7 @@ There are no special requirements for using the Render.com blueprint. However, y
 
 The BluePrint will create a render "web" service.
 
-Type = "[Web Service](https://docs.render.com/blueprint-spec#type)".
+Type = "[Web Service](https://render.com/docs/blueprint-spec#type)".
 
 Render dashboard will list all your web services. At the top, you can switch between Dashboard and BluePrints.
 
@@ -50,6 +50,6 @@ For __services__:
 
 Multi `services` support for Render.com: __yes__
 
-Since [multi services](https://docs.render.com/blueprint-spec#root-level-fields) feature is supported.
+Since [multi services](https://render.com/docs/blueprint-spec#root-level-fields) feature is supported.
 
 Please read more about [multi service support here](/docs/docker-to-iac/multi-services-support.md).
