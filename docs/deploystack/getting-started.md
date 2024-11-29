@@ -55,7 +55,7 @@ Drop your repo URL into DeployStack, and we'll create all the infrastructure tem
 
 ## What's Next?
 
-- Check out [Docker Compose Requirements](/deploystack/docker-compose-requirements.md) to understand what we can handle
+- Check out [Docker Compose Requirements](/docs/deploystack/docker-compose-requirements.md) to understand what we can handle
 - See how [One-Click Deploy](/docs/deploystack/one-click-deploy.md) works in the background
 
 ## Need Help?
