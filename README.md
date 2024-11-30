@@ -95,6 +95,6 @@ Releases are managed automatically through our CI/CD pipeline. When merging to t
 
 ## 💬 Need Help?
 
-- 📚 Check our [Documentation](https://docs.deploystack.io)
+- 📚 Check our [Documentation](https://deploystack.io/docs)
 - 🎯 Report issues on [GitHub](https://github.com/deploystackio/documentation/issues)
 - 📧 Use Discord to chat with us at [https://discord.gg/UjFWwByB](https://discord.gg/UjFWwByB)
