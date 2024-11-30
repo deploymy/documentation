@@ -1,66 +1,100 @@
 # DeployStack Documentation
 
-This repository serves as documentation for the entire DeployStack ecosystem.
-
-If you would like to learn more, visit our website at [deploystack.io](https://deploystack.io).
+This repository contains the official documentation for the DeployStack ecosystem. Visit [deploystack.io](https://deploystack.io) to learn more about our platform.
 
 ![GitHub Release](https://img.shields.io/github/v/release/deploystackio/documentation)
-![GitHub deployments](https://img.shields.io/github/deployments/deploystackio/documentation/docs-deploy-my%20(Preview)?label=Preview%20Deployment)
-![GitHub deployments](https://img.shields.io/github/deployments/deploystackio/documentation/docs-deploy-my%20(Production)?label=Prod%20Deployment)
+![GitHub deployments](https://img.shields.io/github/deployments/deploystackio/documentation/Production?label=Production)
 
-## How to contribute
+## Project Structure
 
-We welcome contributions from the community! Please follow the guidelines below to participate in this project.
+Key directories in this repository:
 
-### Project Structure
+```text
+.
+├── docs/
+│   ├── assets/
+│   │   └── images/
+│   ├── deploystack/
+│   ├── docker-to-iac/
+│   └── sidebar-links.json
+└── markdown-rules/
+```
 
-The key directories and files in this repository include:
+## Contributing Guidelines
 
-- `.github/` - Contains GitHub-related configurations and workflows.
-- `.vitepress/` - VitePress configuration files.
-- `public/` - Directory for storing static assets and public resources.
-- `docker-to-iac/` - Directory containing specific documentation content.
-- `index.md` - Entry point for the documentation main page.
+### Documentation Standards
 
-If you want to create documentation on a specific topic other than docker-to-iac, you can create another directory in root dir level similar to `docker-to-iac`.
+1. Store all documentation files in the `./docs` directory
+2. Place images in `./docs/assets/images`
+3. Use absolute links for all references:
+   - Documentation: `/docs/docker-to-iac/index.md`
+   - Images: `/docs/assets/images/example.png`
 
-### Assets Management
+### Adding New Content
 
-Assets, such as images or other static files, should be stored in the `/public/` directory. When adding new assets, ensure that they are appropriately optimized for web delivery to improve load times and performance.
+When creating new documentation:
 
-Ensure that all assets are referenced using relative paths in your markdown files to ensure proper linking.
+1. Add new pages to the appropriate subdirectory in `./docs`
+2. Follow the established file naming conventions
+3. Ensure all links are absolute paths
+4. Include necessary sidebar entries in `sidebar-links.json`
 
-For images, please when possible use `.webp` format.
+### Asset Management
 
-If you want to create architectures or diagrams, please use [draw.io](https://app.diagrams.net/). You can use draw.io without creating an account. When exporting a diagram, make sure that it contains the draw.io content. This allows the diagram to be edited for future changes.
+For diagrams and architectural images (optional):
 
-File -> Export as PNG -> Check Include a copy of my diagram (All Pages).
+1. Use [draw.io](https://app.diagrams.net/) for creating diagrams
+2. Export as PNG with included diagram data for future editing
+3. Place files in the appropriate subdirectory under `./docs/assets/images`
 
-## CI/CD
+If you want to upload images, please minify them.
 
-Our CI/CD pipeline is designed to ensure smooth integration and deployment processes.
+## Deployment Process
 
-### GitHub Flow
+Our deployment process uses two main branches:
 
-1. **Feature Branches**: Start by creating a new feature branch from the `main` branch. Use descriptive names for feature branches like `feature/new-component` or `bugfix/issue-number`.
-2. **Pull Requests**: Once your feature or fix is ready, open a pull request (PR) against the `main` branch. Ensure your PR is well-documented and includes any necessary context for reviewers.
-3. **Merging**: After review, merge your PR into the `main` branch. The main branch deploys to preview environment of dosc.deploystack.io. The preview link is always added as a comment in a GitHub action job for preview env release.
+- `main`: Development branch
+- `prod`: Production branch
 
-To deploy to the production environment, the `main` branch needs to be merged into the `prod` branch. The `prod` branch deploys to [production environment - https://docs.deploystack.io](https://docs.deploystack.io).
+### Workflow
 
-### Semantic Release
+1. Create feature branches from `main`
+2. Submit pull requests to `main`
+3. After approval and merge to `main`, changes are automatically validated
+4. Merge to `prod` to deploy to [deploystack.io/docs](https://deploystack.io/docs)
 
-We use Semantic Release to automatically manage versioning and package publishing. It is triggered upon a merged PR into the `main` branch. Following [conventional commits standards](https://semantic-release.gitbook.io/semantic-release#commit-message-format) ensures that semantic release can properly determine the next version number.
+### Continuous Integration
 
-### Dependabot
+The CI pipeline includes:
 
-Dependabot is activated to assist with dependency management:
+- Markdown linting
+- Link validation
+- Automatic versioning using semantic release
+- Production deployment triggers
 
-- Automatic pull requests for security vulnerabilities.
-- Weekly automated pull requests for npm module version upgrades.
+## Development Setup
 
-Configuration details can be found [here](https://github.com/deploystackio/documentation/blob/main/.github/dependabot.yml).
+```bash
+# Install dependencies
+npm ci
 
----
+# Run markdown linting
+npm run lint:md
 
-We appreciate your contributions to the DeployStack documentation project. By following these guidelines, you help ensure that the documentation remains accurate, up-to-date, and beneficial to all users of the ecosystem.
+# Check for dead links
+npm run lint:links
+```
+
+## Release Process
+
+Releases are managed automatically through our CI/CD pipeline. When merging to the production branch:
+
+1. Changes are validated
+2. Documentation is built
+3. Content is deployed to [deploystack.io/docs](https://deploystack.io/docs)
+
+## 💬 Need Help?
+
+- 📚 Check our [Documentation](https://docs.deploystack.io)
+- 🎯 Report issues on [GitHub](https://github.com/deploystackio/documentation/issues)
+- 📧 Use Discord to chat with us at [https://discord.gg/UjFWwByB](https://discord.gg/UjFWwByB)
