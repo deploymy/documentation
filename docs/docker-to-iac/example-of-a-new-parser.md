@@ -4,8 +4,9 @@ description: Example code how a new parser must be added to the module so that i
 
 # Example of a new Parser
 
-> [!TIP]  
-> __Thank you__ for your interest in collaborating! The docker-to-iac module will remain open source forever. It is intended to simplify the deployment / IaC world a little and allow everyone to use the cloud provider they want, without vendor lock-in.
+::alert{type="tip"}
+__Thank you__ for your interest in collaborating! The docker-to-iac module will remain open source forever. It is intended to simplify the deployment / IaC world a little and allow everyone to use the cloud provider they want, without vendor lock-in.
+::
 
 To add a new parser you need to consider the following things:
 
