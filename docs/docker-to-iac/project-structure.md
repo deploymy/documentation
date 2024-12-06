@@ -15,7 +15,7 @@ Essentially:
 
 New parser should be created in subdir `src/parsers/`, as in the example of `aws-cloudformation.ts`.
 
-```text
+```bash
 docker-to-iac/
 |-- .github
 |-- dist/

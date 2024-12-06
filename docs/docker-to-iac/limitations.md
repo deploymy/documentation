@@ -16,7 +16,7 @@ The `docker-to-iac` module is designed to work exclusively with pre-built Docker
 
 The module does not support services that use the `build` directive. For example:
 
-```yaml
+```yaml [docker-compose.yml]
 # ❌ Not Supported
 services:
   app:
@@ -27,7 +27,7 @@ services:
 
 Instead, you must use pre-built images:
 
-```yaml
+```yaml [docker-compose.yml]
 # ✅ Supported
 services:
   app:
