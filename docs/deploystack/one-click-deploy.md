@@ -58,7 +58,7 @@ There are two options you can chose from. The main difference is the deploy url.
 
 In the example below with render:
 
-```text
+```markdown
 1. -> https://deploystack.io/deploy/microsoft-vscode?provider=rnd&language=rnd
 2. -> HTTP 302 REDIRECT
 3. -> https://render.com/deploy?repo=https://github.com/deploystackio/deploy-templates/tree/microsoft-vscode
@@ -77,7 +77,7 @@ Link via deploystack deploy endpoint.
 - static deploy links: if the cloud provider changes the one-click deploy url, the functionality will also be broken. You have to update your `README.md` manually.
 - no statistics collection possible: you will never know how many people use your project :)
 
-```markdown
+```markdown [README.md]
 ## ⚡ One-Click Deploy
 
 | Cloud Provider | Deploy Button |
@@ -91,7 +91,7 @@ Direct link to Cloud Provider to enable One-Click depoy.
 
 #### Example Markdown Deploy Standalone
 
-```markdown
+```markdown [README.md]
 ## ⚡ One-Click Deploy
 
 | Cloud Provider | Deploy Button |
