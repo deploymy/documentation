@@ -28,7 +28,7 @@ npm run test
 
 The test suite runs comprehensive checks across all parsers and formats. The testing structure is as follows:
 
-```text
+```bash
 test/
 ├── docker-compose-files/   # Place test docker-compose files here
 │   ├── file1.yml
@@ -68,7 +68,7 @@ You can also test locally using `npm link`. Here's how to set up a development e
 
 Directory structure:
 
-```text
+```bash
 some-root-dir/
 |-- docker-to-iac/
 |-- my-dev-env/

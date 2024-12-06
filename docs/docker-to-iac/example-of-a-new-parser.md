@@ -4,7 +4,7 @@ description: Example code how a new parser must be added to the module so that i
 
 # Example of a new Parser
 
-::alert{type="tip"}
+::content-alert{type="tip"}
 __Thank you__ for your interest in collaborating! The docker-to-iac module will remain open source forever. It is intended to simplify the deployment / IaC world a little and allow everyone to use the cloud provider they want, without vendor lock-in.
 ::
 
@@ -14,8 +14,7 @@ To add a new parser you need to consider the following things:
 
 Create a new file inside `src/parsers/new-provider.ts`:
 
-```typescript
-// src/parsers/new-provider.ts
+```typescript [src/parsers/new-provider.ts]
 import { BaseParser, ParserInfo, DockerCompose, TemplateFormat, formatResponse, DefaultParserConfig } from './base-parser';
 
 const defaultParserConfig: DefaultParserConfig = {
@@ -79,9 +78,7 @@ To test your parser, add a new test case to the file `test/test.ts`. Remember th
 
 Edit file `test/test.ts`:
 
-```typescript
-//test/test.ts
-
+```typescript [test/test.ts]
 // Testing New Provider Cloud Text
 // NP = for new provider
 const nfConfigText = translate(dockerComposeContent, 'NP', TemplateFormat.text);

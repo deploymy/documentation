@@ -10,7 +10,7 @@ The term "multi service support" refers to the ability of a [parser](/docs/docke
 
 Let's look at the `docker-compose.yml` file:
 
-```text
+```yaml [docker-compose.yml]
 version: '3.2'
 
 services:

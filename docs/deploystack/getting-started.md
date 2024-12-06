@@ -38,7 +38,7 @@ Your users can click these buttons to deploy your project directly to their chos
 
 Let's say you have a simple web app with Redis:
 
-```yaml
+```yaml [docker-compose.yml]
 version: '3'
 services:
   web:

@@ -24,7 +24,7 @@ If your docker compose file is not located in the root directory and has not `do
 
 Your services must specify the `image` property. For example:
 
-```yaml
+```yaml [docker-compose.yml]
 # ✅ Supported
 services:
   app:
@@ -37,7 +37,7 @@ services:
 
 We do not support services that use the `build` directive:
 
-```yaml
+```yaml [docker-compose.yml]
 # ❌ Not Supported
 services:
   app:
