@@ -1,10 +1,10 @@
 ---
-description: Official DeployStack documentation - Learn how to automate Docker Compose deployments across cloud providers. Clear guides and technical references for effective deployment automation.
+description: Official DeployStack documentation - Learn how to automate Docker Compose and run deployments across cloud providers. Clear guides and technical references for effective deployment automation.
 ---
 
 # DeployStack Documentation
 
-DeployStack helps you deploy Docker Compose applications across different cloud providers by automatically generating Infrastructure as Code templates. Our documentation guides you through using DeployStack effectively.
+DeployStack helps you deploy Docker Compose and Docker Run applications across different cloud providers by automatically generating Infrastructure as Code templates. Our documentation guides you through using DeployStack effectively.
 
 ## Documentation Sections
 

@@ -1,39 +1,46 @@
 ---
-description: Directory structure, how the docker-to-iac module is structured, explanation of where you should add which type of files.
+description: Directory structure and organization of the docker-to-iac module, including guidance for adding new parsers and source handlers.
 ---
 
-# Project Structure of docker-to-iac module
+# Project Structure of docker-to-iac Module
 
-The structure of the project does not deviate from the common model of how an npm module should be written.
+The project follows standard npm module organization with additional structure to handle both Docker run commands and Docker Compose files.
 
-If the structure is not self-explanatory for you, feel free to create a PR with an improvement.
-
-Essentially:
-
-- `test/` for test,
-- `src/` for source files.
-
-New parser should be created in subdir `src/parsers/`, as in the example of `aws-cloudformation.ts`.
+## Directory Structure
 
 ```bash
 docker-to-iac/
-|-- .github
+|-- .github/
 |-- dist/
 |-- src/
 |   |-- index.ts
 |   |-- parsers/
-|       |-- aws-cloudformation.ts
-|       |-- render.ts
-|       |-- base-parser.ts
-|       |-- ...
+|   |   |-- aws-cloudformation.ts
+|   |   |-- base-parser.ts
+|   |   |-- digitalocean.ts
+|   |   |-- render.ts
+|   |-- sources/
+|   |   |-- base.ts
+|   |   |-- factory.ts
+|   |   |-- compose/
+|   |   |   |-- index.ts
+|   |   |   |-- validate.ts
+|   |   |-- run/
+|   |   |   |-- index.ts
+|   |-- types/
+|   |   |-- container-config.ts
 |   |-- utils/
+|       |-- constructImageString.ts
+|       |-- digitalOceanParserServiceName.ts
+|       |-- getImageUrl.ts
+|       |-- parseCommand.ts
 |       |-- parseDockerImage.ts
-|       |-- validateDockerCompose.ts
-|       |-- ...
+|       |-- parseEnvironmentVariables.ts
+|       |-- parsePort.ts
 |-- test/
-|   |-- sample-docker-compose.yml
+|   |-- docker-compose-files/
+|   |-- docker-run-files/
 |   |-- output/
-|       |-- README.md
 |   |-- test.ts
 |-- .gitignore
 |-- eslint.config.mjs
@@ -44,3 +51,65 @@ docker-to-iac/
 |-- release.config.cjs
 |-- tsconfig.json
 ```
+
+## Directory Purposes
+
+### Core Directories
+
+- `src/` - Source code
+- `test/` - Test files and test cases
+- `dist/` - Compiled output
+- `.github/` - GitHub workflows and templates
+
+### Source Code Organization
+
+#### Parsers (`src/parsers/`)
+
+Contains IaC-specific parsers for different cloud providers:
+
+- `base-parser.ts` - Base parser class
+- `aws-cloudformation.ts` - AWS CloudFormation parser
+- `digitalocean.ts` - DigitalOcean App Platform parser
+- `render.ts` - Render Blueprint parser
+
+#### Source Handlers (`src/sources/`)
+
+Handles different input types:
+
+- `compose/` - Docker Compose file processing
+- `run/` - Docker run command processing
+- `base.ts` - Base source handler
+- `factory.ts` - Source handler factory
+
+#### Types (`src/types/`)
+
+TypeScript type definitions:
+
+- `container-config.ts` - Container configuration types
+
+#### Utilities (`src/utils/`)
+
+Helper functions for parsing and processing:
+
+- Docker image handling
+- Command parsing
+- Environment variable processing
+- Port mapping utilities
+
+### Adding New Source
+
+Add new input source handlers in `src/sources/`:
+
+```bash
+src/sources/new-source/
+|-- index.ts
+|-- validate.ts  # if needed
+```
+
+## Testing
+
+Place test files in appropriate directories:
+
+- Docker Compose files: `test/docker-compose-files/`
+- Docker run commands: `test/docker-run-files/`
+- Test output: `test/output/`

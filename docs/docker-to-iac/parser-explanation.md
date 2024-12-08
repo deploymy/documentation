@@ -1,39 +1,60 @@
 ---
-description: Understand how parsers translate Docker Compose files into cloud-specific Infrastructure as Code templates. Learn about provider configurations and language support.
+description: Understand how parsers translate Docker run commands and Docker Compose files into cloud-specific Infrastructure as Code templates. Learn about provider configurations and language support.
 ---
 
-# Term Parser Explanation in context of docker-to-iac
+# Parser Explanation in docker-to-iac
 
-A parser always represents a selected IaC (Infrastructure as Code) or One-Click Deploy template. A parser therefore translates the `docker-compose.yml` file into the target IaC template.
+A parser in docker-to-iac translates Docker configurations (either Docker run commands or docker-compose.yml files) into Infrastructure as Code (IaC) or One-Click Deploy templates. Each parser is designed to target a specific IaC language or cloud provider template format.
+
+## Input Types
+
+docker-to-iac can process two types of input:
+
+### Docker Run Commands
+
+```bash
+docker run -d -p 8080:80 -e NODE_ENV=production nginx:latest
+```
+
+### Docker Compose Files
+
+```yaml
+version: '3'
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    environment:
+      NODE_ENV: production
+```
 
 ## API
 
-If you are looking for [parser API, click here](/docs/docker-to-iac/api.md).
+For detailed API documentation, see the [parser API reference](/docs/docker-to-iac/api.md).
 
 ## Default Parser Config
 
-Each parser has its own config when it comes to default values. This is necessary because each cloud provider like AWS, Google Cloud or Digital Ocean has different compute plans.
+Each parser includes default configurations specific to its target cloud provider. These defaults are necessary because providers have different compute specifications and limitations.
 
-Example: for AWS you can allocate a minimum of 256 CPU for a docker container in fargate. For DigitalOcean the [minimum setting is 1 vCPU](https://www.digitalocean.com/pricing/app-platform). Therefore the default config is necessary.
+Example: AWS Fargate has a minimum CPU allocation of 256, while DigitalOcean's [minimum setting is 1 vCPU](https://www.digitalocean.com/pricing/app-platform). The default parser config handles these provider-specific requirements.
 
-You can read how to get default parser values ​​through API [here](/docs/docker-to-iac/api.md#get-parser-info).
+To retrieve default parser configurations through the API, see the [parser info documentation](/docs/docker-to-iac/api.md#get-parser-info).
 
-## Parser vs. Lanauge
+## Parser vs. Language
 
-The [type `ParserInfo`](https://github.com/deploystackio/docker-to-iac/blob/main/src/parsers/base-parser.ts) includes the splitting of vars between a `Provider` and `Language`. This is necessary because some providers allow multiple languages.
+The [ParserInfo type](https://github.com/deploystackio/docker-to-iac/blob/main/src/parsers/base-parser.ts) separates variables between `Provider` and `Language`. This separation exists because some cloud providers support multiple IaC languages.
 
-AWS can be mentioned as an example here. In AWS, infrastructure can be created with:
+For example, AWS infrastructure can be defined using:
 
 - CloudFormation
-- AWS CDK (i.e. for TypeScript)
+- AWS CDK (for TypeScript, Python, etc.)
 - Terraform
 
-Therefore, when we add a new parser, check if multiple IaC languages ​​are possible. Keep this in mind when naming the new parser in directory `src/parsers/<IAC_LANGUAGE_FILE_NAME>.ts`. This is also the reason why the [`translate()`](/docs/docker-to-iac/api.md#translate-api) method asks for the target IaC language name (i.e. `CFN`) and not for the provider name (i.e. `AWS`).
+When adding new parsers, consider whether multiple IaC languages are possible for your target provider. This affects how you name your parser file in `src/parsers/<IAC_LANGUAGE_FILE_NAME>.ts`. It's why the [`translate()`](/docs/docker-to-iac/api.md#translate-api) method requires the target IaC language name (e.g., `CFN`) rather than the provider name (e.g., `AWS`).
 
-## Examples
+## Parser Implementation Notes
 
-For example, a parser can translate `docker-compose.yml` into AWS CloudFormation.
+Creating parsers for multi-cloud IaC tools like Terraform presents additional challenges. Terraform's [extensive provider ecosystem](https://registry.terraform.io/browse/providers) means a Terraform parser would need complex logic to handle various provider-specific implementations, making maintenance more difficult.
 
-CloudFormation is only supported by one cloud provider, namely AWS (Amazon Web Services). This means that the choice of parser is always a one-to-one relationship.
-
-It is not so easy to create a parser for IaC templates that supports multi-cloud such as Terraform, as Terraform itself [has various providers](https://registry.terraform.io/browse/providers) in its ecosystem. More logic had to be built in when creating Terraform, which makes the Terraform parser almost unmaintainable.
+In contrast, single-provider languages like AWS CloudFormation have a one-to-one relationship with their cloud provider, simplifying parser implementation and maintenance.
