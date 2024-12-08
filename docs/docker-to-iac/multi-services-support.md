@@ -1,34 +1,77 @@
 ---
-description: Learn about multi-service deployment support - See how docker-to-iac translates multiple Docker Compose services into cloud provider templates.
+description: Learn about multi-service deployment support - See how docker-to-iac handles multiple services in your container configurations.
 ---
 
-# Multi Services Support and what it's all about
+# Multi-Service Support
 
-The term "multi service support" refers to the ability of a [parser](/docs/docker-to-iac/parser-explanation.md) to interpret multiple services from a `docker-compose.yml` file.
+Multi-service support refers to the ability of a [parser](/docs/docker-to-iac/parser-explanation.md) to handle multiple container configurations when translating to Infrastructure as Code (IaC) templates.
 
-## Example docker-compose file
+## Docker Run vs Docker Compose
 
-Let's look at the `docker-compose.yml` file:
+### Docker Run Commands
+
+By nature, Docker run commands define a single container. When you have multiple Docker run commands, each represents a separate service:
+
+```bash
+# Service 1
+docker run -d -p 8080:80 nginx:alpine
+
+# Service 2
+docker run -d -p 6379:6379 redis:latest
+```
+
+### Docker Compose
+
+Docker Compose files can define multiple services within a single file:
 
 ```yaml [docker-compose.yml]
 version: '3.2'
 
 services:
-  frontend:
+  web:
     image: nginx:alpine
     ports:
       - '8080:80'
 
-  frontend:
-    image: node:22-alpine
+  cache:
+    image: redis:latest
     ports:
-      - '80:8080'
+      - '6379:6379'
 ```
 
-The `docker-compose.yml` file has two `services`. If a parser has the ability to translate to "multi-services", all `services` from `docker-compose.yml` will be translated into Infrastructure as Code template i.e. CloudFormation from AWS.
+## Parser Support for Multiple Services
 
-## Non Multi Services Support
+The ability to deploy multiple services simultaneously varies by cloud provider:
 
-However, this can vary from cloud provider to provider. Many providers have developed their own IaC (Infrastructure as Code) language, where the ability to deploy multiple containers at once is __not__ available.
+### Full Multi-Service Support
 
-If the cloud provider does not have the ability to deploy multiple containers at once, only the first service from the `docker-compose.yml` file will be translated into IaC.
+Some cloud providers can deploy multiple containers as part of a single deployment. In these cases, docker-to-iac will translate all services to the target IaC template:
+
+```javascript
+// All services will be included in the translation
+const translation = translate(dockerComposeContent, {
+  source: 'compose',
+  target: 'CFN'  // AWS CloudFormation supports multiple services
+});
+```
+
+### Limited Service Support
+
+Some providers don't support deploying multiple containers simultaneously. For these providers:
+
+- For Docker Compose input: Only the first service from the file will be translated
+- For Docker run commands: Each command must be translated separately
+
+```javascript
+// Only the first service will be translated
+const translation = translate(dockerComposeContent, {
+  source: 'compose',
+  target: 'RND'  // Render.com currently supports single service deployments
+});
+```
+
+## Provider-Specific Behavior
+
+Before using a specific parser, check its multi-service capabilities in the [parser documentation](/docs/docker-to-iac/parser-explanation.md). This helps ensure your deployment strategy aligns with the provider's capabilities.
+
+Note that some providers may have different service limits or deployment patterns even when they support multiple services. Always consult the target provider's documentation for specific limitations.
