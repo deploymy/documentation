@@ -1,21 +1,26 @@
 ---
-description: Example code how a new parser must be added to the module so that it can be published
+description: Example code for adding a new parser to docker-to-iac, supporting both Docker run commands and Docker Compose files
 ---
 
-# Example of a new Parser
+# Adding a New Parser
 
 ::content-alert{type="tip"}
-__Thank you__ for your interest in collaborating! The docker-to-iac module will remain open source forever. It is intended to simplify the deployment / IaC world a little and allow everyone to use the cloud provider they want, without vendor lock-in.
+__Thank you__ for your interest in collaborating! The docker-to-iac module will remain open source forever, helping simplify deployments across cloud providers without vendor lock-in.
 ::
 
-To add a new parser you need to consider the following things:
-
-## Structure
+## Parser Implementation
 
 Create a new file inside `src/parsers/new-provider.ts`:
 
-```typescript [src/parsers/new-provider.ts]
-import { BaseParser, ParserInfo, DockerCompose, TemplateFormat, formatResponse, DefaultParserConfig } from './base-parser';
+```typescript
+import { 
+  BaseParser, 
+  ParserInfo, 
+  ContainerConfig,
+  TemplateFormat, 
+  formatResponse, 
+  DefaultParserConfig 
+} from './base-parser';
 
 const defaultParserConfig: DefaultParserConfig = {
   cpu: 512,
@@ -25,21 +30,29 @@ const defaultParserConfig: DefaultParserConfig = {
 };
 
 class NewProviderParser extends BaseParser {
-  parse(dockerCompose: DockerCompose, templateFormat: TemplateFormat = defaultParserConfig.templateFormat): any {
+  parse(containerConfig: ContainerConfig, templateFormat: TemplateFormat = defaultParserConfig.templateFormat): any {
     let response: any = {};
 
-    // Implement the logic to translate Docker Compose to the new provider's format
-
+    // Get container configurations
+    const services = containerConfig.services;
+    
+    // Your parser implementation here:
+    // 1. Process each service
+    // 2. Map container configurations to your IaC format
+    // 3. Handle provider-specific requirements
+    
     return formatResponse(JSON.stringify(response, null, 2), templateFormat);
   }
 
   getInfo(): ParserInfo {
     return {
-      website: "https://newprovider.deploystack.io",
-      officialDocs: "https://docs.newprovider.deploystack.io",
-      abbreviation: "NP",
-      name: 'New Provider Cloud',
-      defaultParserConfig: defaultParserConfig
+      providerWebsite: "https://newprovider.example.com",
+      providerName: "New Provider Cloud",
+      providerNameAbbreviation: "NP",
+      languageOfficialDocs: "https://docs.newprovider.example.com/iac",
+      languageAbbreviation: "NP",
+      languageName: "New Provider IaC",
+      defaultParserConfig
     };
   }
 }
@@ -47,54 +60,107 @@ class NewProviderParser extends BaseParser {
 export default new NewProviderParser();
 ```
 
-The input of the `parse` method for `dockerCompose` is in JSON format. This allows you to easily implement or adapt your logic. The `formatResponse` method then formats the template in the required response format.
+## Parser Configuration
 
-## Default Parser Config
+### Default Parser Config
 
-If you want to add a new parser, you also know exactly which cloud provider. You have to select CPU and Memory as default values ​​in the default parser config.
-
-It is best to keep the CPU and memory settings low (i.e. 1 vCPU, 1 GB RAM). The reason for this is that those who use our templates should not be surprised that they get a cloud bill that is very high.
-
-The same setting applies to the template output format. Which format is appropriate for the cloud provider:
-
-- `json` - JavaScript Object Notation
-- `yaml` - yet another markup language
-- `text` - for plain text
-
-Example for `defaultParserConfig`
+Set appropriate defaults for your cloud provider:
 
 ```typescript
 const defaultParserConfig: DefaultParserConfig = {
-  cpu: 512,
-  memory: '1GB',
-  fileName: 'awesome-iac.yaml',  
-  templateFormat: TemplateFormat.yaml
+  cpu: 512,                        // Minimum viable CPU allocation
+  memory: '1GB',                   // Minimum viable memory
+  fileName: 'awesome-iac.yaml',    // Default output filename
+  templateFormat: TemplateFormat.yaml // Default format
 };
 ```
 
-## Testing your new parser
+Choose conservative resource defaults to prevent unexpected costs for users.
 
-To test your parser, add a new test case to the file `test/test.ts`. Remember that you are testing all available output formats (yaml, json, text).
+### Supported Formats
 
-Edit file `test/test.ts`:
+Select appropriate output formats for your provider:
 
-```typescript [test/test.ts]
-// Testing New Provider Cloud Text
-// NP = for new provider
-const nfConfigText = translate(dockerComposeContent, 'NP', TemplateFormat.text);
-console.log(`New Provider Cloud ${TemplateFormat.text}:`);
-console.log(nfConfigText);
-writeFileSync(`test/output/output-nf-${TemplateFormat.text}.txt`, nfConfigText);
+- `yaml` - YAML format (recommended for human readability)
+- `json` - JSON format (recommended for programmatic handling)
+- `text` - Plain text (if provider requires specific format)
+
+## Testing
+
+### Add Test Files
+
+1. Add Docker Compose test files in `test/docker-compose-files/`:
+
+```yaml
+# test/docker-compose-files/basic-web.yml
+version: '3'
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - "80:80"
 ```
 
-The test can be executed using `npm run test`
+2. Add Docker run test files in `test/docker-run-files/`:
 
-## Build Step
+```bash
+# test/docker-run-files/basic-nginx.txt
+docker run -d -p 80:80 nginx:latest
+```
 
-You can build the module locally by running the `npm run build` command.
+### Test Implementation
 
-The built output files are located under `dist/`
+Your parser will be automatically tested through the main test suite. The test system will:
 
-## Update the docs
+- Process both Docker run and Docker Compose inputs
+- Generate outputs in all formats
+- Create organized output directories
 
-If you have made an improvement in code, please remember for the users of these modules to update our documentation. The rule for docs can be found in [deploystackio/documentation README.md file](https://github.com/deploystackio/documentation/blob/main/README.md).
+Run tests:
+
+```bash
+npm run test
+```
+
+### Verify Outputs
+
+Check generated files in:
+
+- `test/output/docker-compose/[filename]/np/`
+- `test/output/docker-run/[filename]/np/`
+
+## Building and Documentation
+
+1. Build the module:
+
+```bash
+npm run build
+```
+
+2. Update documentation:
+   - Add parser-specific information
+   - Document any special considerations
+   - Include examples for both Docker run and Docker Compose
+   - Follow [documentation guidelines](https://github.com/deploystackio/documentation/blob/main/README.md)
+
+## Best Practices
+
+1. Support both input types:
+   - Docker run commands
+   - Docker Compose files
+
+2. Handle resource mappings consistently:
+   - Container ports
+   - Environment variables
+   - Volume mounts
+   - Resource limits
+
+3. Provide clear error messages for:
+   - Unsupported features
+   - Invalid configurations
+   - Missing required fields
+
+4. Test edge cases:
+   - Multiple services
+   - Complex configurations
+   - Various image formats

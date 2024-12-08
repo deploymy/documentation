@@ -94,9 +94,21 @@ getParserInfo(languageAbbreviation: string): ParserInfo
 
 ## Translate API
 
-Translate the `docker-compose.yml` file into target language you select.
+Translate Docker configurations (both Docker run commands and docker-compose.yml files) into your chosen Infrastructure as Code language.
 
-### Example
+### Function Signature
+
+```typescript
+translate(input: string, options: {
+  source: 'run' | 'compose',
+  target: string,
+  templateFormat?: TemplateFormat
+}): any
+```
+
+### Examples
+
+#### Translating Docker Compose
 
 ```javascript
 import { readFileSync, writeFileSync } from 'fs';
@@ -104,16 +116,34 @@ import { translate } from '@deploystack/docker-to-iac';
 
 const dockerComposeContent = readFileSync('path/to/docker-compose.yml', 'utf8');
 
-const translatedConfig = translate(dockerComposeContent, 'CFN');
+const translatedConfig = translate(dockerComposeContent, {
+  source: 'compose',
+  target: 'CFN',
+  templateFormat: 'yaml'
+});
 console.log(translatedConfig);
 ```
 
-#### Output
+#### Translating Docker Run Command
+
+```javascript
+import { translate } from '@deploystack/docker-to-iac';
+
+const dockerRunCommand = 'docker run -d -p 8080:80 nginx:latest';
+
+const translatedConfig = translate(dockerRunCommand, {
+  source: 'run',
+  target: 'CFN',
+  templateFormat: 'yaml'
+});
+console.log(translatedConfig);
+```
+
+### Example Output (AWS CloudFormation)
 
 ```yaml
-AWS CloudFormation yaml:
 AWSTemplateFormatVersion: 2010-09-09
-Description: Deplo.my CFN template translated from Docker compose
+Description: Generated from container configuration by docker-to-iac
 Parameters:
   VPC:
     Type: AWS::EC2::VPC::Id
@@ -144,83 +174,137 @@ Resources:
 ...
 ```
 
-### Type
+### Parameters
 
-```typescript
-translate(dockerComposeContent: string, languageAbbreviation: string, templateFormat?: TemplateFormat): any
-```
+#### `input: string`
 
-#### `dockerComposeContent`
+For Docker Compose: The contents of your docker-compose.yml file
+For Docker run: The complete docker run command
 
-The docker compose content you want to translate.
+#### `options.source: 'run' | 'compose'`
 
-#### `languageAbbreviation`
+Specifies the input type:
 
-List of supported IaC languages.
+- `'run'` - For Docker run commands
+- `'compose'` - For Docker Compose files
 
-Currently we support:
+#### `options.target: string`
 
-Please see the sitebar on the left, section Parsers.
+The IaC language to translate to. Currently supported targets:
+Please see the sidebar on the left, section Parsers.
 
-#### `templateFormat` (Optional)
+#### `options.templateFormat?: TemplateFormat`
 
-The response format, you want to get.
+Optional. The desired output format:
 
-Currently we support:
+- `'json'` - JavaScript Object Notation
+- `'yaml'` - YAML format
+- `'text'` - Plain text
 
-- `json` - JavaScript Object Notation
-- `yaml` - yet another markup language
-- `text` - for plain text
+::content-alert{type="important"}
+Not all template formats are valid for every IaC language. For example, AWS CloudFormation only accepts YAML or JSON formats. Choose a format compatible with your target IaC language.
+::
 
-> [!IMPORTANT]  
-> For some IaC languages ​​it doesn't make sense to output them in text, JSON or YAML. For example: CloudFormation only accepts YAML or JSON. So be careful what you choose.
+### Return Value
+
+Returns the translated Infrastructure as Code template in the specified format. The structure and content will vary based on the target IaC language and template format chosen.
 
 ## List Services API
 
-List all services from `docker-compose.yml` as JSON object.
+Extract service configurations from either Docker run commands or docker-compose.yml files as structured JSON objects.
 
-### Example
+### Function Signature
+
+```typescript
+listServices(input: string, source: 'run' | 'compose'): { [key: string]: ServiceConfig }
+```
+
+### Examples
+
+#### Listing Docker Compose Services
 
 ```javascript
-import { readFileSync, writeFileSync } from 'fs';
+import { readFileSync } from 'fs';
 import { listServices } from '@deploystack/docker-to-iac';
 
 const dockerComposeContent = readFileSync('path/to/docker-compose.yml', 'utf8');
 
-const services = listServices(dockerComposeContent);
+const services = listServices(dockerComposeContent, 'compose');
 console.log(services);
 ```
 
-#### Output
+##### Output
 
 ```json
 {
-  db: {
-    image: 'redis:latest',
-    ports: [ '6379:6379' ],
-    command: '',
-    restart: 'always',
-    volumes: [ 'rediscache:/data' ],
-    environment: {
-      PASSWORD: 'secret'
+  "db": {
+    "image": "redis:latest",
+    "ports": ["6379:6379"],
+    "command": "",
+    "restart": "always",
+    "volumes": ["rediscache:/data"],
+    "environment": {
+      "PASSWORD": "secret"
     }
   },
-  web: {
-    image: 'nginx:alpine',
-    ports: [ '80:80' ],
-    restart: 'always',
-    volumes: [ 'volumenginx:/var/www/html:z,ro' ],
-    environment: {}
+  "web": {
+    "image": "nginx:alpine",
+    "ports": ["80:80"],
+    "restart": "always",
+    "volumes": ["volumenginx:/var/www/html:z,ro"],
+    "environment": {}
   }
 }
 ```
 
-### Type
+#### Listing Docker Run Services
 
-```typescript
-listServices(dockerComposeContent: string): { [key: string]: DockerComposeService }
+```javascript
+import { listServices } from '@deploystack/docker-to-iac';
+
+const dockerRunCommand = 'docker run -d -p 8080:80 -e NODE_ENV=production nginx:latest';
+
+const services = listServices(dockerRunCommand, 'run');
+console.log(services);
 ```
 
-#### `dockerComposeContent`
+##### Output
 
-The docker compose content you want to translate.
+```json
+{
+  "service": {
+    "image": "nginx:latest",
+    "ports": ["8080:80"],
+    "environment": {
+      "NODE_ENV": "production"
+    }
+  }
+}
+```
+
+### Parameters
+
+#### `input: string`
+
+- For Docker Compose: The contents of your docker-compose.yml file
+- For Docker run: The complete docker run command
+
+#### `source: 'run' | 'compose'`
+
+Specifies the input type:
+
+- `'run'` - For Docker run commands
+- `'compose'` - For Docker Compose files
+
+### Return Value
+
+Returns an object where:
+
+- Keys are service names
+- Values are service configurations containing:
+  - `image`: Docker image name and tag
+  - `ports`: Array of port mappings
+  - `command`: Custom command (if specified)
+  - `restart`: Restart policy (if specified)
+  - `volumes`: Array of volume mappings (if specified)
+  - `environment`: Object of environment variables
