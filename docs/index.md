@@ -2,7 +2,7 @@
 description: Welcome to DeployStack documentation. Learn how to automate Docker Compose deployments across cloud providers with Infrastructure as Code templates and one-click deployments.
 ---
 
-# DeployStack Documentation
+# DeployStack Documentation: Convert Docker to Infrastructure as Code
 
 Welcome to DeployStack documentation. Find everything you need to deploy Docker applications across different cloud providers.
 
