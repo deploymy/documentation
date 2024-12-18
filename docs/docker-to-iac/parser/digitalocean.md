@@ -41,8 +41,23 @@ This parser supports the following Docker Compose variables for services:
 - ports
 - command
 
-> [!NOTE]
-> Supported variables not listed above will be ignored. They will not be translated into the Infrastructure as Code from `docker-compose.yml`.
+::content-alert{type="note"}
+Supported variables not listed above will be ignored. They will not be translated into the Infrastructure as Code from `docker-compose.yml` or docker run command.
+::
+
+## Volume Support
+
+DigitalOcean App Platform supports ephemeral files only. This means:
+
+- No persistent volume storage is available
+- Local filesystem is limited to 2GB
+- Files are temporary and will be deleted after deployments or container replacements
+- Each container instance has its own separate filesystem
+- Changes to the filesystem are lost when instances are scaled or redeployed
+
+::content-alert{type="warning"}
+Any `volumes` directives in your docker-compose.yml or docker run command will be ignored during the translation to App Platform specifications.
+::
 
 ## Multi Services Support
 
