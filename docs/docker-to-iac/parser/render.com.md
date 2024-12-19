@@ -43,8 +43,37 @@ For __services__:
 - ports
 - command
 
-> [!NOTE]
-> The supported variables that are not on this list are ignored. This means that they are not translated by the parser in Infrastructure as Code from docker-compose.yml.
+::content-alert{type="note"}
+The supported variables that are not on this list are ignored. This means that they are not translated by the parser in Infrastructure as Code from `docker-compose.yml` or docker run command.
+::
+
+## Volume Support
+
+Render.com offers two types of storage options:
+
+### Default: Ephemeral Filesystem
+
+By default, Render services use an ephemeral filesystem where:
+
+- Changes to the filesystem are lost after deployments or restarts
+- Each service instance has its own separate filesystem
+- No data persists between deployments
+
+### Persistent Disk Option
+
+The parser supports adding persistent disk storage through the `volumes` directive:
+
+- Persistent disks are automatically configured with 10GB size
+- Only one disk per service is supported
+- Files are preserved across deployments and restarts
+- Only filesystem changes under the disk's mount path are preserved
+
+Important limitations for persistent disks:
+
+- A disk can only be accessed by a single service instance
+- Services with persistent disks cannot scale to multiple instances
+
+Read more here: [render.com/docs/disks](https://render.com/docs/disks)
 
 ## Multi Services Support
 
