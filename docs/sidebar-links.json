@@ -2,6 +2,7 @@
   {
     "text": "DeployStack",
     "link": "/docs/deploystack",
+    "image": "https://deploystack.io/facivon-16x16.png",
     "items": [
       {
         "text": "Getting Started",
@@ -24,6 +25,7 @@
   {
     "text": "Docker-To-IaC",
     "link": "/docs/docker-to-iac",
+    "icon": "Container",
     "items": [
       {
         "text": "Usage & Concept",
