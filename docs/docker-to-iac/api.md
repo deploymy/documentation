@@ -323,47 +323,52 @@ Extract service configurations from either Docker run commands or docker-compose
 ### Function Signature
 
 ```typescript
-listServices(
-  input: string,
-  source: 'run' | 'compose',
-  environmentVariableConfig?: EnvironmentVariableConfig
-): { [key: string]: ServiceConfig }
+listServices(content: string, options: ListServicesOptions): { [key: string]: ServiceConfig }
+
+type ListServicesOptions = {
+  source: 'compose' | 'run';
+  environmentVariableGeneration?: EnvironmentVariableGenerationConfig;
+  environmentVariables?: Record<string, string>;
+  persistenceKey?: string;
+};
 ```
 
 ### Examples
 
-#### Listing Docker Compose Services
+#### Listing Docker Compose Services with Environment Variables
 
 ```javascript
 import { readFileSync } from 'fs';
-import { listServices } from '@deploystack/docker-to-iac';
+import { listServices, parseEnvFile } from '@deploystack/docker-to-iac';
 
 const dockerComposeContent = readFileSync('path/to/docker-compose.yml', 'utf8');
+const envContent = readFileSync('.env', 'utf-8');
+const envVariables = parseEnvFile(envContent);
 
-const services = listServices(dockerComposeContent, 'compose');
+const services = listServices(dockerComposeContent, {
+  source: 'compose',
+  environmentVariables: envVariables
+});
+
 console.log(services);
 ```
 
-##### Output
+##### Output with Environment Variables
 
 ```json
 {
   "db": {
-    "image": "redis:latest",
-    "ports": ["6379:6379"],
-    "command": "",
-    "restart": "always",
-    "volumes": ["rediscache:/data"],
+    "image": "mariadb:11.2",
+    "ports": [],
+    "command": "mariadbd --character-set-server=utf8mb4 --collation-server=utf8mb4_bin",
+    "restart": "unless-stopped",
+    "volumes": [{"host": "db", "container": "/var/lib/mysql"}],
     "environment": {
-      "PASSWORD": "secret"
+      "MYSQL_ROOT_PASSWORD": "mysecretpassword",
+      "MYSQL_USER": "myuser",
+      "MYSQL_PASSWORD": "mysecretpassword",
+      "MYSQL_DATABASE": "mydatabase"
     }
-  },
-  "web": {
-    "image": "nginx:alpine",
-    "ports": ["80:80"],
-    "restart": "always",
-    "volumes": ["volumenginx:/var/www/html:z,ro"],
-    "environment": {}
   }
 }
 ```
@@ -375,7 +380,10 @@ import { listServices } from '@deploystack/docker-to-iac';
 
 const dockerRunCommand = 'docker run -d -p 8080:80 -e NODE_ENV=production nginx:latest';
 
-const services = listServices(dockerRunCommand, 'run');
+const services = listServices(dockerRunCommand, {
+  source: 'run'
+});
+
 console.log(services);
 ```
 
@@ -393,26 +401,42 @@ console.log(services);
 }
 ```
 
-### Parameters
+### Options
 
-#### `input: string`
+#### `content: string`
+
+The input content to parse:
 
 - For Docker Compose: The contents of your docker-compose.yml file
 - For Docker run: The complete docker run command
 
-#### `source: 'run' | 'compose'`
+#### `options.source: 'run' | 'compose'`
 
 Specifies the input type:
 
 - `'run'` - For Docker run commands
 - `'compose'` - For Docker Compose files
 
-#### `options.environmentVariableConfig?: EnvironmentVariableConfig`
+#### `options.environmentVariables?: Record<string, string>`
 
-Optional. Configuration for generating environment variable values. Structure:
+Optional. Environment variables from a `.env` file or other source. Used to substitute variables in the format `${VARIABLE_NAME}` in your Docker configuration.
+
+Example:
+
+```javascript
+const envVariables = {
+  'DB_PASSWORD': 'mysecretpassword',
+  'DB_USERNAME': 'myuser',
+  'DB_DATABASE': 'mydatabase'
+};
+```
+
+#### `options.environmentVariableGeneration?: EnvironmentVariableGenerationConfig`
+
+Optional. Configuration for automatically generating environment variable values. Structure:
 
 ```typescript
-type EnvironmentVariableConfig = {
+type EnvironmentVariableGenerationConfig = {
   [imageName: string]: {
     versions: {
       [version: string]: {
@@ -431,27 +455,33 @@ type EnvironmentVariableConfig = {
 }
 ```
 
-Generation types:
+Example:
 
-- `password`: Generates a secure random password
-- `string`: Generates a random string
-- `number`: Generates a random number within specified range
+```javascript
+const envGeneration = {
+  'library/mariadb': {
+    versions: {
+      '*': {
+        environment: {
+          'MYSQL_ROOT_PASSWORD': {
+            type: 'password',
+            length: 16
+          },
+          'MYSQL_DATABASE': {
+            type: 'string',
+            length: 12,
+            pattern: 'lowercase'
+          }
+        }
+      }
+    }
+  }
+};
+```
 
-Patterns (for string type):
+#### `options.persistenceKey?: string`
 
-- `uppercase`: Only uppercase characters
-- `lowercase`: Only lowercase characters
-- `normal`: Mixed case with numbers
-
-Version matching:
-
-- Use exact versions (e.g., "10.5")
-- Use "*" for all versions
-- Use "latest" for latest version
-
-::content-alert{type="important"}
-Environment variables in your docker-compose.yml must use the `${VARIABLE_NAME}` syntax to be processed by the generator.
-::
+Optional. A unique key to maintain consistent generated environment variables across multiple calls to `listServices` or `translate`.
 
 ### Return Value
 
