@@ -32,6 +32,8 @@
         "items": [
           { "text": "Quickstart", "link": "/docs/docker-to-iac/quickstart.md" },
           { "text": "API", "link": "/docs/docker-to-iac/api.md" },
+          { "text": "Passing Environment Variable", "link": "/docs/docker-to-iac/environment-variable.md" },          
+          { "text": "Environment Variable Generation", "link": "/docs/docker-to-iac/environment-variable-generation.md" },          
           { "text": "Parser Explanation", "link": "/docs/docker-to-iac/parser-explanation.md" },
           { "text": "Multi Services Support", "link": "/docs/docker-to-iac/multi-services-support.md" },
           { "text": "Supported Docker Compose Variables", "link": "/docs/docker-to-iac/supported-docker-compose-variables.md" },
