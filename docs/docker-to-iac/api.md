@@ -102,7 +102,10 @@ Translate Docker configurations (both Docker run commands and docker-compose.yml
 translate(input: string, options: {
   source: 'run' | 'compose',
   target: string,
-  templateFormat?: TemplateFormat
+  templateFormat?: TemplateFormat,
+  environmentVariableGeneration?: EnvironmentVariableGenerationConfig;
+  environmentVariables?: Record<string, string>;
+  persistenceKey?: string;
 }): any
 ```
 
@@ -174,6 +177,40 @@ Resources:
 ...
 ```
 
+#### Translation with Environment Variable Generation
+
+```typescript
+import { translate } from '@deploystack/docker-to-iac';
+
+// Environment variable configuration
+const envConfig = {
+  'library/mariadb': {
+    versions: {
+      '*': {
+        environment: {
+          'MYSQL_ROOT_PASSWORD': {
+            type: 'password',
+            length: 16
+          },
+          'MYSQL_DATABASE': {
+            type: 'string',
+            length: 12,
+            pattern: 'lowercase'
+          }
+        }
+      }
+    }
+  }
+};
+
+const translatedConfig = translate(dockerComposeContent, {
+  source: 'compose',
+  target: 'CFN',
+  templateFormat: 'yaml',
+  environmentVariableGeneration: envConfig
+});
+```
+
 ### Parameters
 
 #### `input: string`
@@ -205,6 +242,76 @@ Optional. The desired output format:
 Not all template formats are valid for every IaC language. For example, AWS CloudFormation only accepts YAML or JSON formats. Choose a format compatible with your target IaC language.
 ::
 
+#### `options.environmentVariableGeneration?: EnvironmentVariableGenerationConfig`
+
+Optional. Configuration for generating environment variable values. Structure:
+
+```typescript
+type EnvironmentVariableGenerationConfig = {
+  [imageName: string]: {
+    versions: {
+      [version: string]: {
+        environment: {
+          [variableName: string]: {
+            type: 'password' | 'string' | 'number';
+            length?: number;
+            pattern?: 'uppercase' | 'lowercase' | 'normal';
+            min?: number;  // For number type
+            max?: number;  // For number type
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+Generation types:
+
+- `password`: Generates a secure random password
+- `string`: Generates a random string
+- `number`: Generates a random number within specified range
+
+Patterns (for string type):
+
+- `uppercase`: Only uppercase characters
+- `lowercase`: Only lowercase characters
+- `normal`: Mixed case with numbers
+
+Version matching:
+
+- Use exact versions (e.g., "10.5")
+- Use "*" for all versions
+- Use "latest" for latest version
+
+::content-alert{type="important"}
+Environment variables in your docker-compose.yml must use the `${VARIABLE_NAME}` syntax to be processed by the generator.
+::
+
+#### `environmentVariables?: Record<string, string>`
+
+Optional. The docker-to-iac module supports passing environment variables from `.env` files to your Infrastructure as Code templates. This feature allows you to manage configuration values separately from your Docker configurations and maintain consistency across deployments.
+
+```typescript
+import { translate, parseEnvFile } from '@deploystack/docker-to-iac';
+import { readFileSync } from 'fs';
+
+// Read and parse the .env file
+const envContent = readFileSync('.env', 'utf-8');
+const envVariables = parseEnvFile(envContent);
+
+const result = translate(dockerConfig, {
+  source: 'run',  // or 'compose'
+  target: 'RND',  // or other supported targets
+  templateFormat: 'yaml',
+  environmentVariables: envVariables
+});
+```
+
+#### `options.persistenceKey?: string`
+
+Optional. The `persistenceKey` parameter allows you to maintain consistent variable values across multiple template generations
+
 ### Return Value
 
 Returns the translated Infrastructure as Code template in the specified format. The structure and content will vary based on the target IaC language and template format chosen.
@@ -216,7 +323,11 @@ Extract service configurations from either Docker run commands or docker-compose
 ### Function Signature
 
 ```typescript
-listServices(input: string, source: 'run' | 'compose'): { [key: string]: ServiceConfig }
+listServices(
+  input: string,
+  source: 'run' | 'compose',
+  environmentVariableConfig?: EnvironmentVariableConfig
+): { [key: string]: ServiceConfig }
 ```
 
 ### Examples
@@ -296,6 +407,52 @@ Specifies the input type:
 - `'run'` - For Docker run commands
 - `'compose'` - For Docker Compose files
 
+#### `options.environmentVariableConfig?: EnvironmentVariableConfig`
+
+Optional. Configuration for generating environment variable values. Structure:
+
+```typescript
+type EnvironmentVariableConfig = {
+  [imageName: string]: {
+    versions: {
+      [version: string]: {
+        environment: {
+          [variableName: string]: {
+            type: 'password' | 'string' | 'number';
+            length?: number;
+            pattern?: 'uppercase' | 'lowercase' | 'normal';
+            min?: number;  // For number type
+            max?: number;  // For number type
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+Generation types:
+
+- `password`: Generates a secure random password
+- `string`: Generates a random string
+- `number`: Generates a random number within specified range
+
+Patterns (for string type):
+
+- `uppercase`: Only uppercase characters
+- `lowercase`: Only lowercase characters
+- `normal`: Mixed case with numbers
+
+Version matching:
+
+- Use exact versions (e.g., "10.5")
+- Use "*" for all versions
+- Use "latest" for latest version
+
+::content-alert{type="important"}
+Environment variables in your docker-compose.yml must use the `${VARIABLE_NAME}` syntax to be processed by the generator.
+::
+
 ### Return Value
 
 Returns an object where:
@@ -308,3 +465,46 @@ Returns an object where:
   - `restart`: Restart policy (if specified)
   - `volumes`: Array of volume mappings (if specified)
   - `environment`: Object of environment variables
+
+## Parse Environment File
+
+Parse a `.env` file content into a key-value object using the `parseEnvFile()` method. The method handles basic environment file syntax including comments and quoted values.
+
+### Example
+
+```typescript
+import { parseEnvFile } from '@deploystack/docker-to-iac';
+
+const envContent = `
+# Database settings
+DB_HOST=localhost
+DB_USER="admin"
+DB_PASS='secretpass'
+# Comment line
+NUMBERS=123456
+QUOTED="value=with=equals"
+`;
+
+const envVars = parseEnvFile(envContent);
+
+console.log('Parsed Environment Variables:');
+console.log(envVars);
+```
+
+#### Output
+
+```json
+{
+  "DB_HOST": "localhost",
+  "DB_USER": "admin",
+  "DB_PASS": "secretpass",
+  "NUMBERS": "123456",
+  "QUOTED": "value=with=equals"
+}
+```
+
+### Type
+
+```typescript
+parseEnvFile(content: string): Record<string, string>
+```
