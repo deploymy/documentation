@@ -2,34 +2,46 @@
 description: Guide for contributing to Render.com service type configurations in docker-to-iac
 ---
 
-# Render: Contributing to Service Types Configuration
+# Render: Contributing to Render Service Types
 
-This guide explains how to contribute to the Render.com service type configurations in docker-to-iac. The service types configuration determines whether a Docker service should be deployed as a web service or private service on Render.com.
+This guide explains how to contribute to the Render.com service type configurations in docker-to-iac. The service types configuration determines whether a Docker service should be deployed as a web service, private service, or Redis service on Render.com.
 
 ## Configuration Location
 
 The service types configuration is stored in:
 
 ```bash
-src/config/render/service-types.json
+src/config/render/service-types.ts
 ```
 
 This configuration is specific to Render.com and is not used by other cloud provider parsers.
 
-## JSON Structure
+## TypeScript Configuration Structure
 
-The configuration file uses the following structure:
+The configuration uses the following structure:
 
-```json
-{
-  "serviceTypes": {
-    "docker.io/library/mariadb": {
-      "type": "pserv",
-      "description": "MariaDB database service - requires private service type due to TCP protocol",
-      "versions": "*"
+```typescript
+interface ServiceTypeConfig {
+  type: string;
+  description: string;
+  versions: string;
+}
+
+interface RenderServiceTypesConfig {
+  serviceTypes: {
+    [key: string]: ServiceTypeConfig;
+  };
+}
+
+export const renderServiceTypesConfig: RenderServiceTypesConfig = {
+  serviceTypes: {
+    'docker.io/library/mariadb': {
+      type: 'pserv',
+      description: 'MariaDB database service - requires private service type due to TCP protocol',
+      versions: '*'
     }
   }
-}
+};
 ```
 
 ### Field Definitions
@@ -64,58 +76,54 @@ The configuration file uses the following structure:
    ```
 
 3. Add Your Configuration
-   - Create a new entry in `service-types.json`
-   - Include a descriptive comment explaining the change
-   - Follow the JSON structure shown above
+   - Add a new entry to the `renderServiceTypesConfig` object
+   - Include a descriptive comment explaining the service type choice
+   - Follow the TypeScript interface structure shown above
 
 4. Submit a Pull Request
    - Fork the repository
-   - Add your changes to `service-types.json`
+   - Add your changes to `service-types.ts`
    - Create a pull request with:
      - Clear description of the service
      - Why it needs a specific service type
      - Any relevant documentation links
 
-## Example Pull Request
+## Example Addition
 
 Here's an example of a good service type addition:
 
-```json
-{
-  "serviceTypes": {
-    "docker.io/library/mariadb": {
-      "type": "pserv",
-      "description": "MariaDB database service - requires private service type due to TCP protocol",
-      "versions": "*"
+```typescript
+export const renderServiceTypesConfig: RenderServiceTypesConfig = {
+  serviceTypes: {
+    // Existing configurations...
+    'docker.io/library/postgresql': {
+      type: 'pserv',
+      description: 'PostgreSQL database service - requires private networking for security',
+      versions: '*'
     },
-    "docker.io/library/postgres": {
-      "type": "pserv",
-      "description": "PostgreSQL database service - requires private networking for security",
-      "versions": "*"
+    'docker.io/library/rabbitmq': {
+      type: 'pserv',
+      description: 'RabbitMQ message broker - requires private TCP communication',
+      versions: '*'
     }
   }
-}
+};
 ```
 
-## Validation
+## Service Type Categories
 
-Before submitting:
-
-1. Verify the image name using the `getImageUrl` utility
-2. Ensure your JSON is valid
-3. Test the configuration with a sample deployment
-4. Check that your service works with the assigned type
-
-## Common Service Types
+### Private Services (`pserv`)
 
 Common services that should use `pserv`:
 
 - Databases (MySQL, PostgreSQL, MongoDB)
 - Message queues (RabbitMQ, Apache Kafka)
-- Cache services (except Redis, which uses type: "redis")
+- Cache services (except Redis)
 - Backend services that don't serve HTTP traffic
 
-Services that should remain `web`:
+### Web Services (`web`)
+
+Services that should remain as default `web` type:
 
 - HTTP APIs
 - Web applications
@@ -133,5 +141,5 @@ If you're unsure about:
 Please:
 
 - Check Render's [service types documentation](https://render.com/docs/blueprint-spec#type)
-- Open a discussion in our GitHub repository [github.com/deploystackio/feedback](https://github.com/deploystackio/feedback)
+- Open a discussion in our feedback GitHub repository [github.com/deploystackio/feedback](https://github.com/deploystackio/feedback)
 - Join our [Discord community](https://discord.gg/UjFWwByB) for help
