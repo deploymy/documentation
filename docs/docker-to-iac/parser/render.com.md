@@ -75,6 +75,51 @@ Important limitations for persistent disks:
 
 Read more here: [render.com/docs/disks](https://render.com/docs/disks)
 
+## Service Types
+
+The parser automatically determines the appropriate service type for each container in your Docker configuration:
+
+### Web Services (Default)
+
+By default, services are created as `type: web`, which is suitable for:
+
+- HTTP-based applications
+- Frontend applications
+- API servers
+- Any service that needs to be publicly accessible
+
+### Private Services
+
+For databases and other TCP-based services, the parser automatically sets `type: pserv`. These services:
+
+- Are not publicly accessible
+- Can communicate with other services over TCP
+- Are ideal for databases and backend services
+
+Read more here: [render.com/docs/private-services](https://render.com/docs/private-services).
+
+The service type is determined based on the Docker image being used. For example:
+
+```yaml
+services:
+  web:
+    image: nginx:latest
+    # Automatically set to type: web
+    
+  db:
+    image: mariadb:11.2
+    # Automatically set to type: pserv
+```
+
+### Adding New Service Types
+
+If you're using a service that should be private but isn't automatically detected, you can contribute by:
+
+1. Opening a pull request to our [docker-to-iac repository](https://github.com/deploystackio/docker-to-iac)
+2. Adding your service to the `service-types.json` configuration
+
+Read more about Render service types in their [official documentation](https://render.com/docs/blueprint-spec#type).
+
 ## Multi Services Support
 
 Multi `services` support for Render.com: __yes__
