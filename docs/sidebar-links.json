@@ -56,6 +56,7 @@
           { "text": "Before you Start", "link": "/docs/docker-to-iac/before-you-start.md" },
           { "text": "Available Commands", "link": "/docs/docker-to-iac/available-commands.md" },
           { "text": "Project Structure", "link": "/docs/docker-to-iac/project-structure.md" },
+          { "text": "Render: Contributing to Service Types", "link": "/docs/docker-to-iac/render-contributing-to-service-types.md" },
           { "text": "Testing", "link": "/docs/docker-to-iac/testing.md" },
           { "text": "Example of a New Parser", "link": "/docs/docker-to-iac/example-of-a-new-parser.md" },
           { "text": "Publishing to npm", "link": "/docs/docker-to-iac/publishing-to-npm.md" }
