@@ -113,12 +113,7 @@ services:
 
 ### Adding New Service Types
 
-If you're using a service that should be private but isn't automatically detected, you can contribute by:
-
-1. Opening a pull request to our [docker-to-iac repository](https://github.com/deploystackio/docker-to-iac)
-2. Adding your service to the `service-types.json` configuration
-
-Read more about Render service types in their [official documentation](https://render.com/docs/blueprint-spec#type).
+If you're using a service that should be private but isn't automatically detected, please visit our [Render: Contributing to Render Service Types docs page](/docs/docker-to-iac/render-contributing-to-service-types.md).
 
 ## Multi Services Support
 

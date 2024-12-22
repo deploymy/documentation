@@ -14,6 +14,9 @@ docker-to-iac/
 |-- dist/
 |-- src/
 |   |-- index.ts
+|   |-- config/
+|   |   |-- render/
+|   |   |   |-- service-types.ts
 |   |-- parsers/
 |   |   |-- aws-cloudformation.ts
 |   |   |-- base-parser.ts
@@ -63,6 +66,15 @@ docker-to-iac/
 
 ### Source Code Organization
 
+#### Config (`src/config/`)
+
+Contains provider-specific configurations:
+
+- `render/` - Render.com specific configurations
+  - `service-types.ts` - Service type mappings for Render.com deployments (web, private services, Redis)
+
+Each cloud provider can have its own subdirectory for configuration files that affect how the parser handles specific cases for that provider.
+
 #### Parsers (`src/parsers/`)
 
 Contains IaC-specific parsers for different cloud providers:
@@ -95,6 +107,7 @@ Helper functions for parsing and processing:
 - Command parsing
 - Environment variable processing
 - Port mapping utilities
+- and many more...
 
 ### Adding New Source
 
