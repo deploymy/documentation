@@ -18,7 +18,7 @@ This error occurs when the submitted URL doesn't match the expected GitHub repos
 **Solution:**
 Use the standard GitHub repository URL format:
 
-```text
+```bash
 https://github.com/username/repository
 ```
 

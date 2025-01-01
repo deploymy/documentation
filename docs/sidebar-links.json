@@ -9,6 +9,18 @@
         "link": "/docs/deploystack/getting-started.md"
       },
       {
+        "text": "Configuration Directory",
+        "link": "/docs/deploystack/deploystack-configuration-directory.md"
+      },      
+      {
+        "text": "IaC Lifecycle",
+        "link": "/docs/deploystack/iac-lifecycle.md"
+      },
+      {
+        "text": "GitHub Applicaton",
+        "link": "/docs/deploystack/github-application.md"
+      },      
+      {
         "text": "One Click Deploy",
         "link": "/docs/deploystack/one-click-deploy.md"
       },
