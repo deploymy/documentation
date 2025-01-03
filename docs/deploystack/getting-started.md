@@ -86,7 +86,7 @@ Create a `.deploystack` directory in your repository with these components:
 .deploystack/
 ├── docker-compose.yml  # Your Docker Compose configuration
 ├── docker-run.txt      # Or your Docker run command
-├── .env                # Environment variables (optional)
+├── env                 # Environment variables (optional)
 └── logo.webp           # Your project logo (optional)
 ```
 
