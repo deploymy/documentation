@@ -16,7 +16,7 @@ The `.deploystack` directory in your repository contains configuration files tha
 .deploystack/
 ├── docker-compose.yml  # Docker Compose configuration
 ├── docker-run.txt      # Docker run command
-├── .env                # Environment variables (optional)
+├── env                 # Environment variables (optional)
 └── logo.webp           # Project / app logo (optional)
 ```
 
@@ -48,11 +48,11 @@ docker run -d -p 80:80 nginx:alpine
 
 ### Environment Variables
 
-- File: `.env` (optional)
+- File: `env` (optional)
 - Used with both Docker Compose and Docker run configurations
 - Contains key-value pairs for environment variables
 
-Example `.env`:
+Example `env`:
 
 ```bash
 DB_USER=admin
